@@ -12,7 +12,7 @@ durum:
   son_guncelleme: 2026-10-25
   hafta: 1
   toplam_hafta: 5
-  ozet: Veri inceleme ve temizlik kararları tamamlandı; literatür taraması başladı (protokol hazır, 4 temel kaynak incelendi).
+  ozet: Veri inceleme ve temizlik tamamlandı; ortak veri modülü hazır ve doğrulandı; literatür taraması sürüyor (4 temel kaynak incelendi).
 
 plan:
   - hafta: 1
@@ -60,6 +60,7 @@ danisman_gorusu:
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
 
 son_guncellemeden_bu_yana:
+  - "2. haftanın ilk işi erken tamamlandı: temizlik adımları tek bir ortak veri modülünde toplandı ve tüm sayılar bağımsız bir kontrol betiğiyle doğrulandı (temizlik sonrası 2.520.859 akış, 65 özellik)."
   - Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).
   - 11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.
   - Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.
