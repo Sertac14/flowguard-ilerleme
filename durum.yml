@@ -63,7 +63,7 @@ son_guncellemeden_bu_yana:
   - Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).
   - 11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.
   - Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.
-  - Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü aday olarak belirlendi; danışman görüşü bekleniyor.
+  - Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü seçildi.
 
 sayilar:
   - ad: Okunan kaynak
@@ -106,3 +106,9 @@ karar_kaydi:
   - tarih: 2026-10-25
     karar: Saldırı aileleri için literatürdeki 7 sınıflı şema (Panigrahi ve Borah, 2018) benimsendi; Heartbleed DoS/DDoS ailesinde.
     gerekce: Aile bazlı sonuçlar kendi geçici şemamıza değil yayımlanmış bir sınıflandırmaya dayanır; böylece literatürle karşılaştırılabilir.
+  - tarih: 2026-10-25
+    karar: Çapraz veri seti testi için CIC-UNSW-NB15 (UNSW-NB15'in CICFlowMeter ile işlenmiş sürümü) kullanılacak; yalnızca ikili sınıflandırma, ortak özellik alt kümesiyle.
+    gerekce: Ana veri setiyle aynı özellik çıkarım aracından üretildiği için iki veri setinin özellikleri eşleştirilebilir; NetFlow tabanlı sürümler CIC-IDS2017'yi kapsamıyor.
+  - tarih: 2026-10-25
+    karar: Kapsam bitirme projesi düzeyinde tutulacak; literatür hedefi 20 kaynak.
+    gerekce: Ödev metninde kaynak sayısı şartı yok; çekirdek iş (temizlik, sızıntısız değerlendirme, 4 model, yanlış alarm oranı ve saldırı türü bazında başarı, arayüz, rapor) önceliklendirildi.

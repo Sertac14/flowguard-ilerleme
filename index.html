@@ -134,7 +134,7 @@
         <li>Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).</li>
         <li>11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.</li>
         <li>Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.</li>
-        <li>Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü aday olarak belirlendi; danışman görüşü bekleniyor.</li>
+        <li>Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü seçildi.</li>
       </ul>
     </section>
 
@@ -152,7 +152,7 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-label="Eğitilen model"><span style="width:0%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">7</div>
+          <div class="deger">9</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
@@ -238,6 +238,16 @@
             <td data-label="Tarih">25.10.2026</td>
             <td data-label="Karar">Saldırı aileleri için literatürdeki 7 sınıflı şema (Panigrahi ve Borah, 2018) benimsendi; Heartbleed DoS/DDoS ailesinde.</td>
             <td data-label="Gerekçe">Aile bazlı sonuçlar kendi geçici şemamıza değil yayımlanmış bir sınıflandırmaya dayanır; böylece literatürle karşılaştırılabilir.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Çapraz veri seti testi için CIC-UNSW-NB15 (UNSW-NB15&#x27;in CICFlowMeter ile işlenmiş sürümü) kullanılacak; yalnızca ikili sınıflandırma, ortak özellik alt kümesiyle.</td>
+            <td data-label="Gerekçe">Ana veri setiyle aynı özellik çıkarım aracından üretildiği için iki veri setinin özellikleri eşleştirilebilir; NetFlow tabanlı sürümler CIC-IDS2017&#x27;yi kapsamıyor.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Kapsam bitirme projesi düzeyinde tutulacak; literatür hedefi 20 kaynak.</td>
+            <td data-label="Gerekçe">Ödev metninde kaynak sayısı şartı yok; çekirdek iş (temizlik, sızıntısız değerlendirme, 4 model, yanlış alarm oranı ve saldırı türü bazında başarı, arayüz, rapor) önceliklendirildi.</td>
           </tr>
         </tbody>
       </table>
