@@ -12,7 +12,7 @@ durum:
   son_guncelleme: 2026-10-25
   hafta: 1
   toplam_hafta: 5
-  ozet: Veri inceleme ve temizlik kararları tamamlandı; literatür taraması bu hafta başlıyor.
+  ozet: Veri inceleme ve temizlik kararları tamamlandı; literatür taraması başladı (protokol hazır, 4 temel kaynak incelendi).
 
 plan:
   - hafta: 1
@@ -60,16 +60,15 @@ danisman_gorusu:
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
 
 son_guncellemeden_bu_yana:
-  - Çalışma ortamı kuruldu (Python 3.15, sürümler sabitlendi) ve Git ile sürüm kontrolü başlatıldı.
-  - "CIC-IDS2017 incelendi: 2.830.743 akış, 78 özellik, 15 sınıf; normal trafik %80,3."
-  - Veri kalitesi sorunları tek tek ölçüldü (tekrar, çelişkili etiket, negatif ve sonsuz değerler, sabit ve kopya sütunlar).
-  - Temizlik kuralları ve uygulanma sırası kesinleşti; veri 2.520.859 satıra iniyor (%10,95 kayıp).
-  - Keşifsel veri analizi tamamlandı (sınıf dağılımı, tekrar oranı, veri kalitesi, korelasyon, kutu grafikleri).
+  - Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).
+  - 11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.
+  - Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.
+  - Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü aday olarak belirlendi; danışman görüşü bekleniyor.
 
 sayilar:
   - ad: Okunan kaynak
-    deger: 0
-    hedef: 25
+    deger: 4
+    hedef: 20
   - ad: Eğitilen model
     deger: 0
     hedef: 4
@@ -104,3 +103,6 @@ karar_kaydi:
     gerekce: >-
       Yeni bilgi taşımazlar. Kopyalar 69 özelliğin tüm çiftleri taranarak bulundu; her grupta ilk sütun
       tutulur. Neredeyse eşit çiftlere dokunulmaz; o karar eğitim verisinden yapılacak özellik seçimine bırakıldı.
+  - tarih: 2026-10-25
+    karar: Saldırı aileleri için literatürdeki 7 sınıflı şema (Panigrahi ve Borah, 2018) benimsendi; Heartbleed DoS/DDoS ailesinde.
+    gerekce: Aile bazlı sonuçlar kendi geçici şemamıza değil yayımlanmış bir sınıflandırmaya dayanır; böylece literatürle karşılaştırılabilir.

@@ -98,7 +98,7 @@
         <span>Takvim: Hafta 1/5</span>
       </div>
       <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-label="Takvim: Hafta 1/5"><span style="width:20%"></span></div>
-      <p class="ozet">Veri inceleme ve temizlik kararları tamamlandı; literatür taraması bu hafta başlıyor.</p>
+      <p class="ozet">Veri inceleme ve temizlik kararları tamamlandı; literatür taraması başladı (protokol hazır, 4 temel kaynak incelendi).</p>
     </header>
 
     <section class="danisman" aria-labelledby="b-danisman">
@@ -131,11 +131,10 @@
     <section aria-labelledby="b-son">
       <h2 id="b-son">Son güncellemeden bu yana</h2>
       <ul class="liste">
-        <li>Çalışma ortamı kuruldu (Python 3.15, sürümler sabitlendi) ve Git ile sürüm kontrolü başlatıldı.</li>
-        <li>CIC-IDS2017 incelendi: 2.830.743 akış, 78 özellik, 15 sınıf; normal trafik %80,3.</li>
-        <li>Veri kalitesi sorunları tek tek ölçüldü (tekrar, çelişkili etiket, negatif ve sonsuz değerler, sabit ve kopya sütunlar).</li>
-        <li>Temizlik kuralları ve uygulanma sırası kesinleşti; veri 2.520.859 satıra iniyor (%10,95 kayıp).</li>
-        <li>Keşifsel veri analizi tamamlandı (sınıf dağılımı, tekrar oranı, veri kalitesi, korelasyon, kutu grafikleri).</li>
+        <li>Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).</li>
+        <li>11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.</li>
+        <li>Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.</li>
+        <li>Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü aday olarak belirlendi; danışman görüşü bekleniyor.</li>
       </ul>
     </section>
 
@@ -143,9 +142,9 @@
       <h2 id="b-sayilar">Sayılarla ilerleme</h2>
       <div class="kartlar">
         <div class="kart">
-          <div class="deger">0/25</div>
+          <div class="deger">4/20</div>
           <div class="ad">Okunan kaynak</div>
-          <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" aria-label="Okunan kaynak"><span style="width:0%"></span></div>
+          <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="20" aria-valuenow="4" aria-label="Okunan kaynak"><span style="width:20%"></span></div>
         </div>
         <div class="kart">
           <div class="deger">0/4</div>
@@ -153,7 +152,7 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-label="Eğitilen model"><span style="width:0%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">6</div>
+          <div class="deger">7</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
@@ -234,6 +233,11 @@
             <td data-label="Tarih">25.10.2026</td>
             <td data-label="Karar">Sabit 8 sütun ve tüm satırlarda birebir eşit 5 kopya sütun düşürülür; 78 özellikten 65&#x27;i kalır.</td>
             <td data-label="Gerekçe">Yeni bilgi taşımazlar. Kopyalar 69 özelliğin tüm çiftleri taranarak bulundu; her grupta ilk sütun tutulur. Neredeyse eşit çiftlere dokunulmaz; o karar eğitim verisinden yapılacak özellik seçimine bırakıldı.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Saldırı aileleri için literatürdeki 7 sınıflı şema (Panigrahi ve Borah, 2018) benimsendi; Heartbleed DoS/DDoS ailesinde.</td>
+            <td data-label="Gerekçe">Aile bazlı sonuçlar kendi geçici şemamıza değil yayımlanmış bir sınıflandırmaya dayanır; böylece literatürle karşılaştırılabilir.</td>
           </tr>
         </tbody>
       </table>
