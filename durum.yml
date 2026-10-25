@@ -60,6 +60,8 @@ danisman_gorusu:
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
 
 son_guncellemeden_bu_yana:
+  - "Literatür: 15 kaynağın künyesi doğrulandı (1. hafta hedefi 10–12 aşıldı); değerlendirme metrikleri ve makine öğrenmesi yöntem hataları üzerine temel kaynaklar eklendi."
+  - Keşifsel veri analizi ortak veri modülüne bağlandı; grafikler kesin aile şemasıyla yeniden üretildi.
   - "2. haftanın ilk işi erken tamamlandı: temizlik adımları tek bir ortak veri modülünde toplandı ve tüm sayılar bağımsız bir kontrol betiğiyle doğrulandı (temizlik sonrası 2.520.859 akış, 65 özellik)."
   - Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).
   - 11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.
@@ -68,7 +70,7 @@ son_guncellemeden_bu_yana:
 
 sayilar:
   - ad: Okunan kaynak
-    deger: 4
+    deger: 5
     hedef: 20
   - ad: Eğitilen model
     deger: 0
