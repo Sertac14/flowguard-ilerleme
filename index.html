@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <title>FlowGuard ilerleme panosu</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --zemin: #f6f6f3; --yuzey: #ffffff; --metin: #1c1c1a; --metin2: #55544f; --soluk: #8a8880;
+      --cizgi: #dedcd4; --vurgu: #1f5fbf; --vurgu-zemin: #eaf1fd; --cubuk-zemin: #e4e2da;
+      --tamam: #1d6b2f; --tamam-zemin: #e3f3e6; --devam: #1f5fbf; --devam-zemin: #eaf1fd;
+      --bekliyor: #55544f; --bekliyor-zemin: #ecebe5;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --zemin: #131312; --yuzey: #1c1c1a; --metin: #f0efec; --metin2: #c3c2b7; --soluk: #8f8d85;
+        --cizgi: #34332f; --vurgu: #6da7ec; --vurgu-zemin: #1b2838; --cubuk-zemin: #34332f;
+        --tamam: #7fd08f; --tamam-zemin: #1a2c1f; --devam: #6da7ec; --devam-zemin: #1b2838;
+        --bekliyor: #c3c2b7; --bekliyor-zemin: #2a2a27;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--zemin); color: var(--metin);
+           font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; }
+    section, header { margin-bottom: 32px; }
+    h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 4px; }
+    h1 span { font-weight: 400; color: var(--metin2); }
+    h2 { font-size: 1.25rem; margin: 0 0 12px; }
+    h3 { font-size: 1.05rem; margin: 0 0 6px; }
+    p { margin: 0 0 8px; }
+    .tur { color: var(--vurgu); font-weight: 600; font-size: .9rem; margin-bottom: 4px; }
+    .baslik { font-size: 1.05rem; margin-bottom: 6px; }
+    .odak, .ozet, footer { color: var(--metin2); }
+    .satir { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 14px 0 8px; font-weight: 600; }
+    .cubuk { height: 12px; background: var(--cubuk-zemin); border-radius: 6px; overflow: hidden; }
+    .cubuk span, .mini span { display: block; height: 100%; background: var(--vurgu); border-radius: 6px; }
+    .danisman { background: var(--vurgu-zemin); border: 2px solid var(--vurgu); border-radius: 12px; padding: 18px 18px 8px; }
+    .danisman > p { color: var(--metin2); }
+    .danisman ol { list-style: none; counter-reset: sira; margin: 0; padding: 0; }
+    .danisman li { counter-increment: sira; background: var(--yuzey); border: 1px solid var(--cizgi);
+                   border-radius: 8px; padding: 14px 14px 6px 52px; margin-bottom: 12px; position: relative; }
+    .danisman li::before { content: counter(sira); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px;
+                           border-radius: 50%; background: var(--vurgu); color: var(--yuzey);
+                           font-weight: 700; text-align: center; line-height: 26px; }
+    .soru { font-weight: 600; }
+    .soru span { background: var(--vurgu); color: var(--yuzey); border-radius: 4px; padding: 1px 6px;
+                 font-size: .8rem; margin-right: 4px; }
+    ul.liste { margin: 0; padding-left: 20px; }
+    ul.liste li { margin-bottom: 6px; }
+    .kartlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+    .kart { background: var(--yuzey); border: 1px solid var(--cizgi); border-radius: 10px; padding: 14px; }
+    .kart .deger { font-size: 1.7rem; font-weight: 700; line-height: 1.1; }
+    .kart .ad { color: var(--metin2); font-size: .9rem; margin-top: 4px; }
+    .mini { height: 6px; background: var(--cubuk-zemin); border-radius: 3px; overflow: hidden; margin-top: 10px; }
+    figure { margin: 0 0 10px; }
+    figure img { width: 100%; height: auto; border: 1px solid var(--cizgi); border-radius: 8px; background: #fcfcfb; }
+    ol.plan { list-style: none; margin: 0; padding: 0; }
+    ol.plan li { display: grid; grid-template-columns: 110px 1fr auto; gap: 4px 14px; align-items: center;
+                 background: var(--yuzey); border: 1px solid var(--cizgi); border-radius: 8px;
+                 padding: 10px 14px; margin-bottom: 8px; }
+    ol.plan li.aktif { border: 2px solid var(--vurgu); }
+    .hafta { font-weight: 700; }
+    .hafta span { display: block; font-weight: 400; font-size: .85rem; color: var(--metin2); }
+    .rozet { font-size: .8rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+    .rozet.tamam { color: var(--tamam); background: var(--tamam-zemin); }
+    .rozet.devam { color: var(--devam); background: var(--devam-zemin); }
+    .rozet.bekliyor { color: var(--bekliyor); background: var(--bekliyor-zemin); }
+    table { width: 100%; border-collapse: collapse; background: var(--yuzey); border: 1px solid var(--cizgi); }
+    th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--cizgi); }
+    th { font-size: .85rem; color: var(--metin2); background: var(--zemin); }
+    td:first-child { white-space: nowrap; }
+    footer { font-size: .85rem; border-top: 1px solid var(--cizgi); padding-top: 14px; }
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      ol.plan li { grid-template-columns: 1fr; }
+      .rozet { justify-self: start; }
+      thead { position: absolute; left: -9999px; }
+      table, tbody, tr, td { display: block; width: 100%; }
+      tr { border-bottom: 2px solid var(--cizgi); padding: 6px 0; }
+      td { border: 0; padding: 4px 12px; }
+      td::before { content: attr(data-label); display: block; font-size: .8rem; color: var(--metin2); font-weight: 600; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="tur">Yüksek lisans bitirme projesi</p>
+      <h1>FlowGuard <span>ilerleme panosu</span></h1>
+      <p class="baslik">Makine Öğrenmesi Tabanlı Ağ Trafiği Analizi ve Siber Tehdit Tespit Sistemi</p>
+      <p class="odak"><strong>Odak:</strong> Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği</p>
+      <div class="satir">
+        <span>Son güncelleme: 25 Ekim 2026</span>
+        <span>Takvim: Hafta 1/5</span>
+      </div>
+      <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-label="Takvim: Hafta 1/5"><span style="width:20%"></span></div>
+      <p class="ozet">Veri inceleme ve temizlik kararları tamamlandı; literatür taraması bu hafta başlıyor.</p>
+    </header>
+
+    <section class="danisman" aria-labelledby="b-danisman">
+      <h2 id="b-danisman">Danışman görüşü beklenen konular</h2>
+      <p>4 konuda görüşünüz bekleniyor.</p>
+      <ol>
+        <li>
+          <h3>Nadir sınıflar için raporlama düzeni</h3>
+          <p>Heartbleed (11), SQL Injection (21) ve Infiltration (36) satırla çok küçük; tek bir %80/%20 bölmede test kümesine 3-8 satır düşüyor. Öneri üç katman: (1) ikili sınıflandırma (normal/saldırı) ana deney, (2) saldırı ailesi bazında sınıflandırma, (3) 15 sınıf yalnızca tekrarlı katmanlı çapraz doğrulama ile ve örnek sayılarıyla birlikte.</p>
+          <p class="soru"><span>Soru</span> Bu üç katmanlı düzen uygun mu?</p>
+        </li>
+        <li>
+          <h3>Çelişkili etiketli satırların silinmesi</h3>
+          <p>Özellikleri birebir aynı ama etiketi farklı 698 akış çifti (1.396 satır, verinin %0,055&#x27;i) var; hepsi normal trafik ile saldırı arasında, çoğu PortScan. Bu satırlar siliniyor; etkisi bir duyarlılık analiziyle ayrıca ölçülecek.</p>
+          <p class="soru"><span>Soru</span> Silme + duyarlılık analizi yaklaşımı yeterli mi?</p>
+        </li>
+        <li>
+          <h3>Kapsam önceliği</h3>
+          <p>UNSW-NB15 ile çapraz veri seti testi planda, ancak iki veri setinin özellikleri birebir eşleşmiyor. Takvim sıkışırsa ilk ertelenecek iş bu.</p>
+          <p class="soru"><span>Soru</span> Çapraz veri seti testi sizce zorunlu mu, yoksa ek katkı olarak mı değerlendirilmeli?</p>
+        </li>
+        <li>
+          <h3>Teslim ve biçim</h3>
+          <p>Rapor için yazım kılavuzu, sayfa sınırı, teslim ve sunum tarihleri henüz bende yok.</p>
+          <p class="soru"><span>Soru</span> Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?</p>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="b-son">
+      <h2 id="b-son">Son güncellemeden bu yana</h2>
+      <ul class="liste">
+        <li>Çalışma ortamı kuruldu (Python 3.15, sürümler sabitlendi) ve Git ile sürüm kontrolü başlatıldı.</li>
+        <li>CIC-IDS2017 incelendi: 2.830.743 akış, 78 özellik, 15 sınıf; normal trafik %80,3.</li>
+        <li>Veri kalitesi sorunları tek tek ölçüldü (tekrar, çelişkili etiket, negatif ve sonsuz değerler, sabit ve kopya sütunlar).</li>
+        <li>Temizlik kuralları ve uygulanma sırası kesinleşti; veri 2.520.859 satıra iniyor (%10,95 kayıp).</li>
+        <li>Keşifsel veri analizi tamamlandı (sınıf dağılımı, tekrar oranı, veri kalitesi, korelasyon, kutu grafikleri).</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="b-sayilar">
+      <h2 id="b-sayilar">Sayılarla ilerleme</h2>
+      <div class="kartlar">
+        <div class="kart">
+          <div class="deger">0/25</div>
+          <div class="ad">Okunan kaynak</div>
+          <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" aria-label="Okunan kaynak"><span style="width:0%"></span></div>
+        </div>
+        <div class="kart">
+          <div class="deger">0/4</div>
+          <div class="ad">Eğitilen model</div>
+          <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-label="Eğitilen model"><span style="width:0%"></span></div>
+        </div>
+        <div class="kart">
+          <div class="deger">6</div>
+          <div class="ad">Karar kaydı</div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="b-bulgu">
+      <h2 id="b-bulgu">Öne çıkan bulgu</h2>
+      <h3>Tekrar eden akışlar sınıflara eşit dağılmıyor</h3>
+      <figure>
+        <a href="grafikler/02_tekrar_orani.png"><img src="grafikler/02_tekrar_orani.png" width="2669" height="1743" alt="Grafik: Tekrar eden akışlar sınıflara eşit dağılmıyor"></a>
+      </figure>
+      <p>SSH-Patator akışlarının %45&#x27;i, PortScan akışlarının %43&#x27;ü birebir tekrar. Tekrarlar silinmeden yapılan bir değerlendirmede aynı akış hem eğitimde hem testte bulunabileceği için, en çok bu saldırı türlerinin sonuçları olduğundan iyi görünür.</p>
+    </section>
+
+    <section aria-labelledby="b-plan">
+      <h2 id="b-plan">5 haftalık plan</h2>
+      <ol class="plan">
+        <li class="aktif">
+          <div class="hafta">Hafta 1<span>25–31 Ekim</span></div>
+          <div class="konu">Ortam, veri inceleme, keşifsel veri analizi (EDA), literatür taramasının başlangıcı</div>
+          <span class="rozet devam">Devam ediyor</span>
+        </li>
+        <li>
+          <div class="hafta">Hafta 2<span>1–7 Kasım</span></div>
+          <div class="konu">Ön işleme hattı (Pipeline), sınıf dengesizliği stratejileri, model eğitimi</div>
+          <span class="rozet bekliyor">Bekliyor</span>
+        </li>
+        <li>
+          <div class="hafta">Hafta 3<span>8–14 Kasım</span></div>
+          <div class="konu">Model karşılaştırması, saldırı türü bazında metrikler, çapraz veri seti testi</div>
+          <span class="rozet bekliyor">Bekliyor</span>
+        </li>
+        <li>
+          <div class="hafta">Hafta 4<span>15–21 Kasım</span></div>
+          <div class="konu">Streamlit arayüzü</div>
+          <span class="rozet bekliyor">Bekliyor</span>
+        </li>
+        <li>
+          <div class="hafta">Hafta 5<span>22–30 Kasım</span></div>
+          <div class="konu">Proje raporunun tamamlanması, sunum</div>
+          <span class="rozet bekliyor">Bekliyor</span>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="b-karar">
+      <h2 id="b-karar">Karar kaydı</h2>
+      <table>
+        <thead><tr><th>Tarih</th><th>Karar</th><th>Gerekçe</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Ana sistem bir iş akışı uygulaması olmayacak; n8n yalnızca zaman kalırsa sonda isteğe bağlı bildirim eklentisi olabilir.</td>
+            <td data-label="Gerekçe">Model eğitimi için uygun değil; bulut tabanlı çalışması tekrarlanabilirlik ve veri gizliliği açısından sorunlu.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Tekrarlar, kaynak dosyadan bağımsız tanımla ve eğitim/test bölmesinden önce silinir (308.381 satır).</td>
+            <td data-label="Gerekçe">Aynı akışın farklı günlerde görünen kopyalarının hem eğitimde hem testte kalması önlenir.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Özellikleri aynı, etiketi farklı 1.396 satır silinir; etkisi duyarlılık analiziyle ölçülecek.</td>
+            <td data-label="Gerekçe">Aynı özellik vektörünün eğitim ve testte farklı etiketle görünmesi önlenir.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Satır silme ve değer düzeltme kuralları etiketten bağımsızdır; etiket dağılımına yalnızca etkiyi raporlamak için bakılır.</td>
+            <td data-label="Gerekçe">Etikete bakılarak seçilen kurallar sonuçlarda yanlılık yaratır.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Eksik değer doldurma, ölçekleme ve dengeleme (SMOTE) yalnızca eğitim verisinden öğrenilir.</td>
+            <td data-label="Gerekçe">Veri sızıntısını (data leakage) önlemek.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">25.10.2026</td>
+            <td data-label="Karar">Sabit 8 sütun ve tüm satırlarda birebir eşit 5 kopya sütun düşürülür; 78 özellikten 65&#x27;i kalır.</td>
+            <td data-label="Gerekçe">Yeni bilgi taşımazlar. Kopyalar 69 özelliğin tüm çiftleri taranarak bulundu; her grupta ilk sütun tutulur. Neredeyse eşit çiftlere dokunulmaz; o karar eğitim verisinden yapılacak özellik seçimine bırakıldı.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 25 Ekim 2026.</footer>
+  </main>
+</body>
+</html>
