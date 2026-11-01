@@ -12,7 +12,7 @@ durum:
   son_guncelleme: 2026-11-01
   hafta: 2
   toplam_hafta: 5
-  ozet: Veri inceleme, temizlik ve ortak veri modülü tamamlandı; değerlendirme tasarımı kesinleşti, ön işleme hattına geçiliyor. Literatür taraması sürüyor (15 künye doğrulandı, 5 kaynak tam metinden incelendi).
+  ozet: Ön işleme hattı ve model eğitimi (eğitim kümesinde 5 katlı çapraz doğrulama) tamamlandı; sonuçların analizi sürüyor. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (15 künye doğrulandı, 5 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -60,6 +60,8 @@ danisman_gorusu:
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
 
 son_guncellemeden_bu_yana:
+  - "Ön işleme hattı yazıldı: katmanlı eğitim/test bölmesi, çelişkili çiftler için ayrı ek test kümesi ve her katta yeniden öğrenilen doldurma, ölçekleme ve dengeleme adımları; 73 otomatik kontrolle doğrulandı."
+  - "Dört model (Logistic Regression, Decision Tree, Random Forest, XGBoost) eğitim kümesinde 5 katlı çapraz doğrulamayla eğitildi; yanlış alarmların hangi saldırı ailesine karıştığı ve dengeleme yönteminin etkisi analiz ediliyor."
   - "Değerlendirme tasarımı kesinleşti: katmanlı eğitim/test bölmesi, eğitim içinde 5 katlı çapraz doğrulama, test kümesinin yalnızca en sonda bir kez kullanılması ve yanlış alarm odaklı metrik seti."
   - "Literatür: 15 kaynağın künyesi doğrulandı (1. hafta hedefi 10–12 aşıldı); değerlendirme metrikleri ve makine öğrenmesi yöntem hataları üzerine temel kaynaklar eklendi."
   - Keşifsel veri analizi ortak veri modülüne bağlandı; grafikler kesin aile şemasıyla yeniden üretildi.
@@ -71,7 +73,7 @@ sayilar:
     deger: 5
     hedef: 20
   - ad: Eğitilen model
-    deger: 0
+    deger: 4
     hedef: 4
 # "Karar kaydı" kartı yayinla.py tarafından karar_kaydi listesinin uzunluğundan otomatik eklenir.
 
@@ -125,3 +127,6 @@ karar_kaydi:
   - tarih: 2026-10-26
     karar: İlk sürümde özellik seçimi yapılmaz; eksik değer göstergeleri eğitimden öğrenilir; arayüz, eğitimdeki etiketten bağımsız temizlik kurallarının aynısını uygular.
     gerekce: Öğrenilen her adım yalnızca eğitim verisinden gelir; eğitim ve kullanım koşulları aynı kalır.
+  - tarih: 2026-11-01
+    karar: "Dengesizlik: ikili sınıflandırmada sınıf ağırlıklandırma; saldırı ailesi sınıflandırmasında ağırlıklandırma ve ağırlıklandırma + SMOTE karşılaştırılır. Ağırlıklar ve SMOTE her katın yalnızca kendi eğitim kısmından öğrenilir."
+    gerekce: Dengeleme sızıntısız ve dört modelde aynı mantıkla yapılır; SMOTE yalnızca çok küçük sınıflara uygulanır.
