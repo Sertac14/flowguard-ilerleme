@@ -94,11 +94,11 @@
       <p class="baslik">Makine Öğrenmesi Tabanlı Ağ Trafiği Analizi ve Siber Tehdit Tespit Sistemi</p>
       <p class="odak"><strong>Odak:</strong> Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği</p>
       <div class="satir">
-        <span>Son güncelleme: 25 Ekim 2026</span>
-        <span>Takvim: Hafta 1/5</span>
+        <span>Son güncelleme: 1 Kasım 2026</span>
+        <span>Takvim: Hafta 2/5</span>
       </div>
-      <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-label="Takvim: Hafta 1/5"><span style="width:20%"></span></div>
-      <p class="ozet">Veri inceleme ve temizlik tamamlandı; ortak veri modülü hazır ve doğrulandı; literatür taraması sürüyor (4 temel kaynak incelendi).</p>
+      <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" aria-label="Takvim: Hafta 2/5"><span style="width:40%"></span></div>
+      <p class="ozet">Veri inceleme, temizlik ve ortak veri modülü tamamlandı; değerlendirme tasarımı kesinleşti, ön işleme hattına geçiliyor. Literatür taraması sürüyor (15 künye doğrulandı, 5 kaynak tam metinden incelendi).</p>
     </header>
 
     <section class="danisman" aria-labelledby="b-danisman">
@@ -112,8 +112,8 @@
         </li>
         <li>
           <h3>Çelişkili etiketli satırların silinmesi</h3>
-          <p>Özellikleri birebir aynı ama etiketi farklı 698 akış çifti (1.396 satır, verinin %0,055&#x27;i) var; hepsi normal trafik ile saldırı arasında, çoğu PortScan. Bu satırlar siliniyor; etkisi bir duyarlılık analiziyle ayrıca ölçülecek.</p>
-          <p class="soru"><span>Soru</span> Silme + duyarlılık analizi yaklaşımı yeterli mi?</p>
+          <p>Özellikleri birebir aynı ama etiketi farklı 698 akış çifti (1.396 satır, verinin %0,055&#x27;i) ana deneyden silinir. Çiftlerin %20&#x27;si ayrı bir ek test kümesinde tutulur ve modeller bununla da ölçülür; böylece silmenin sonuçları ne kadar iyimserleştirdiği görülür.</p>
+          <p class="soru"><span>Soru</span> Silme + ayrı ek test kümesi yaklaşımı yeterli mi?</p>
         </li>
         <li>
           <h3>Kapsam önceliği</h3>
@@ -131,13 +131,11 @@
     <section aria-labelledby="b-son">
       <h2 id="b-son">Son güncellemeden bu yana</h2>
       <ul class="liste">
+        <li>Değerlendirme tasarımı kesinleşti: katmanlı eğitim/test bölmesi, eğitim içinde 5 katlı çapraz doğrulama, test kümesinin yalnızca en sonda bir kez kullanılması ve yanlış alarm odaklı metrik seti.</li>
         <li>Literatür: 15 kaynağın künyesi doğrulandı (1. hafta hedefi 10–12 aşıldı); değerlendirme metrikleri ve makine öğrenmesi yöntem hataları üzerine temel kaynaklar eklendi.</li>
         <li>Keşifsel veri analizi ortak veri modülüne bağlandı; grafikler kesin aile şemasıyla yeniden üretildi.</li>
         <li>2. haftanın ilk işi erken tamamlandı: temizlik adımları tek bir ortak veri modülünde toplandı ve tüm sayılar bağımsız bir kontrol betiğiyle doğrulandı (temizlik sonrası 2.520.859 akış, 65 özellik).</li>
-        <li>Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).</li>
-        <li>11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.</li>
         <li>Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.</li>
-        <li>Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü seçildi.</li>
       </ul>
     </section>
 
@@ -155,7 +153,7 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-label="Eğitilen model"><span style="width:0%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">9</div>
+          <div class="deger">13</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
@@ -174,15 +172,15 @@
     <section aria-labelledby="b-plan">
       <h2 id="b-plan">5 haftalık plan</h2>
       <ol class="plan">
-        <li class="aktif">
+        <li>
           <div class="hafta">Hafta 1<span>25–31 Ekim</span></div>
           <div class="konu">Ortam, veri inceleme, keşifsel veri analizi (EDA), literatür taramasının başlangıcı</div>
-          <span class="rozet devam">Devam ediyor</span>
+          <span class="rozet tamam">Tamamlandı</span>
         </li>
-        <li>
+        <li class="aktif">
           <div class="hafta">Hafta 2<span>1–7 Kasım</span></div>
           <div class="konu">Ön işleme hattı (Pipeline), sınıf dengesizliği stratejileri, model eğitimi</div>
-          <span class="rozet bekliyor">Bekliyor</span>
+          <span class="rozet devam">Devam ediyor</span>
         </li>
         <li>
           <div class="hafta">Hafta 3<span>8–14 Kasım</span></div>
@@ -252,11 +250,31 @@
             <td data-label="Karar">Kapsam bitirme projesi düzeyinde tutulacak; literatür hedefi 20 kaynak.</td>
             <td data-label="Gerekçe">Ödev metninde kaynak sayısı şartı yok; çekirdek iş (temizlik, sızıntısız değerlendirme, 4 model, yanlış alarm oranı ve saldırı türü bazında başarı, arayüz, rapor) önceliklendirildi.</td>
           </tr>
+          <tr>
+            <td data-label="Tarih">26.10.2026</td>
+            <td data-label="Karar">Değerlendirme: 15 sınıfa göre katmanlı %80/%20 bölme; eğitim kümesinde 5 katlı katmanlı çapraz doğrulama; test kümesi yalnızca en sonda bir kez kullanılır; karar eşiği katlar dışı tahminlerden seçilir.</td>
+            <td data-label="Gerekçe">Model, ayar ve eşik seçimi test kümesine bakılmadan yapılır; sonuçlar ortalama ± standart sapmayla verilir.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">26.10.2026</td>
+            <td data-label="Karar">Metrikler: yanlış alarm oranı (yanlış alarm sayısıyla birlikte), sınıf bazında recall ve precision (örnek sayılarıyla), makro F1, MCC ve precision-recall eğrisi. Accuracy tabloda yer alır ama yorumlanmaz.</td>
+            <td data-label="Gerekçe">Dengesiz veride accuracy ve ROC eğrisi iyimser görünür (Arp ve ark., 2022; Saito ve Rehmsmeier, 2015; Chicco ve Jurman, 2020).</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">26.10.2026</td>
+            <td data-label="Karar">Çelişkili çiftlerin %20&#x27;si ayrı bir ek test kümesinde tutulur; modeller ana test kümesine ek olarak bununla da ölçülür.</td>
+            <td data-label="Gerekçe">Etiketi belirsiz örnekleri testten tamamen çıkarmak değerlendirmeyi kolaylaştırır (Arp ve ark., 2022).</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">26.10.2026</td>
+            <td data-label="Karar">İlk sürümde özellik seçimi yapılmaz; eksik değer göstergeleri eğitimden öğrenilir; arayüz, eğitimdeki etiketten bağımsız temizlik kurallarının aynısını uygular.</td>
+            <td data-label="Gerekçe">Öğrenilen her adım yalnızca eğitim verisinden gelir; eğitim ve kullanım koşulları aynı kalır.</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
-    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 25 Ekim 2026.</footer>
+    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 1 Kasım 2026.</footer>
   </main>
 </body>
 </html>

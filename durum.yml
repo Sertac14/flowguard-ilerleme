@@ -9,20 +9,20 @@ proje:
   odak: Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği
 
 durum:
-  son_guncelleme: 2026-10-25
-  hafta: 1
+  son_guncelleme: 2026-11-01
+  hafta: 2
   toplam_hafta: 5
-  ozet: Veri inceleme ve temizlik tamamlandı; ortak veri modülü hazır ve doğrulandı; literatür taraması sürüyor (4 temel kaynak incelendi).
+  ozet: Veri inceleme, temizlik ve ortak veri modülü tamamlandı; değerlendirme tasarımı kesinleşti, ön işleme hattına geçiliyor. Literatür taraması sürüyor (15 künye doğrulandı, 5 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
     tarih: 25–31 Ekim
     konu: Ortam, veri inceleme, keşifsel veri analizi (EDA), literatür taramasının başlangıcı
-    durum: devam
+    durum: tamam
   - hafta: 2
     tarih: 1–7 Kasım
     konu: Ön işleme hattı (Pipeline), sınıf dengesizliği stratejileri, model eğitimi
-    durum: bekliyor
+    durum: devam
   - hafta: 3
     tarih: 8–14 Kasım
     konu: Model karşılaştırması, saldırı türü bazında metrikler, çapraz veri seti testi
@@ -47,9 +47,9 @@ danisman_gorusu:
   - konu: Çelişkili etiketli satırların silinmesi
     aciklama: >-
       Özellikleri birebir aynı ama etiketi farklı 698 akış çifti (1.396 satır, verinin %0,055'i)
-      var; hepsi normal trafik ile saldırı arasında, çoğu PortScan. Bu satırlar siliniyor;
-      etkisi bir duyarlılık analiziyle ayrıca ölçülecek.
-    soru: Silme + duyarlılık analizi yaklaşımı yeterli mi?
+      ana deneyden silinir. Çiftlerin %20'si ayrı bir ek test kümesinde tutulur ve modeller
+      bununla da ölçülür; böylece silmenin sonuçları ne kadar iyimserleştirdiği görülür.
+    soru: Silme + ayrı ek test kümesi yaklaşımı yeterli mi?
   - konu: Kapsam önceliği
     aciklama: >-
       UNSW-NB15 ile çapraz veri seti testi planda, ancak iki veri setinin özellikleri birebir
@@ -60,13 +60,11 @@ danisman_gorusu:
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
 
 son_guncellemeden_bu_yana:
+  - "Değerlendirme tasarımı kesinleşti: katmanlı eğitim/test bölmesi, eğitim içinde 5 katlı çapraz doğrulama, test kümesinin yalnızca en sonda bir kez kullanılması ve yanlış alarm odaklı metrik seti."
   - "Literatür: 15 kaynağın künyesi doğrulandı (1. hafta hedefi 10–12 aşıldı); değerlendirme metrikleri ve makine öğrenmesi yöntem hataları üzerine temel kaynaklar eklendi."
   - Keşifsel veri analizi ortak veri modülüne bağlandı; grafikler kesin aile şemasıyla yeniden üretildi.
   - "2. haftanın ilk işi erken tamamlandı: temizlik adımları tek bir ortak veri modülünde toplandı ve tüm sayılar bağımsız bir kontrol betiğiyle doğrulandı (temizlik sonrası 2.520.859 akış, 65 özellik)."
-  - Literatür tarama protokolü hazırlandı (5 eksen, arama ifadeleri, dahil etme ve dışlama ölçütleri).
-  - 11 kaynağın künyesi birincil kaynaklardan doğrulandı; 4 temel kaynak tam metinden incelendi.
   - Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.
-  - Çapraz veri seti testi için CICFlowMeter ile işlenmiş UNSW-NB15 sürümü seçildi.
 
 sayilar:
   - ad: Okunan kaynak
@@ -115,3 +113,15 @@ karar_kaydi:
   - tarih: 2026-10-25
     karar: Kapsam bitirme projesi düzeyinde tutulacak; literatür hedefi 20 kaynak.
     gerekce: Ödev metninde kaynak sayısı şartı yok; çekirdek iş (temizlik, sızıntısız değerlendirme, 4 model, yanlış alarm oranı ve saldırı türü bazında başarı, arayüz, rapor) önceliklendirildi.
+  - tarih: 2026-10-26
+    karar: "Değerlendirme: 15 sınıfa göre katmanlı %80/%20 bölme; eğitim kümesinde 5 katlı katmanlı çapraz doğrulama; test kümesi yalnızca en sonda bir kez kullanılır; karar eşiği katlar dışı tahminlerden seçilir."
+    gerekce: Model, ayar ve eşik seçimi test kümesine bakılmadan yapılır; sonuçlar ortalama ± standart sapmayla verilir.
+  - tarih: 2026-10-26
+    karar: "Metrikler: yanlış alarm oranı (yanlış alarm sayısıyla birlikte), sınıf bazında recall ve precision (örnek sayılarıyla), makro F1, MCC ve precision-recall eğrisi. Accuracy tabloda yer alır ama yorumlanmaz."
+    gerekce: Dengesiz veride accuracy ve ROC eğrisi iyimser görünür (Arp ve ark., 2022; Saito ve Rehmsmeier, 2015; Chicco ve Jurman, 2020).
+  - tarih: 2026-10-26
+    karar: Çelişkili çiftlerin %20'si ayrı bir ek test kümesinde tutulur; modeller ana test kümesine ek olarak bununla da ölçülür.
+    gerekce: Etiketi belirsiz örnekleri testten tamamen çıkarmak değerlendirmeyi kolaylaştırır (Arp ve ark., 2022).
+  - tarih: 2026-10-26
+    karar: İlk sürümde özellik seçimi yapılmaz; eksik değer göstergeleri eğitimden öğrenilir; arayüz, eğitimdeki etiketten bağımsız temizlik kurallarının aynısını uygular.
+    gerekce: Öğrenilen her adım yalnızca eğitim verisinden gelir; eğitim ve kullanım koşulları aynı kalır.
