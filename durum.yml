@@ -9,10 +9,10 @@ proje:
   odak: Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği
 
 durum:
-  son_guncelleme: 2026-11-01
+  son_guncelleme: 2026-11-03
   hafta: 2
   toplam_hafta: 5
-  ozet: Ön işleme hattı ve model eğitimi (eğitim kümesinde 5 katlı çapraz doğrulama) tamamlandı; sonuçların analizi sürüyor. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (15 künye doğrulandı, 5 kaynak tam metinden incelendi).
+  ozet: Ön işleme hattı ve model eğitimi (eğitim kümesinde 5 katlı çapraz doğrulama) tamamlandı; sonuçların analizi sürüyor. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (15 künye doğrulandı, 7 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -60,6 +60,7 @@ danisman_gorusu:
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
 
 son_guncellemeden_bu_yana:
+  - "SMOTE özgün yayını ve algoritma karşılaştırma ekseni künye düzeyinde tamamlandı; CIC-IDS2017 Botnet sınıfının etiket sorunları üzerine literatür tarandı."
   - "Ön işleme hattı yazıldı: katmanlı eğitim/test bölmesi, çelişkili çiftler için ayrı ek test kümesi ve her katta yeniden öğrenilen doldurma, ölçekleme ve dengeleme adımları; 73 otomatik kontrolle doğrulandı."
   - "Dört model (Logistic Regression, Decision Tree, Random Forest, XGBoost) eğitim kümesinde 5 katlı çapraz doğrulamayla eğitildi; yanlış alarmların hangi saldırı ailesine karıştığı ve dengeleme yönteminin etkisi analiz ediliyor."
   - "Değerlendirme tasarımı kesinleşti: katmanlı eğitim/test bölmesi, eğitim içinde 5 katlı çapraz doğrulama, test kümesinin yalnızca en sonda bir kez kullanılması ve yanlış alarm odaklı metrik seti."
@@ -70,7 +71,7 @@ son_guncellemeden_bu_yana:
 
 sayilar:
   - ad: Okunan kaynak
-    deger: 5
+    deger: 7
     hedef: 20
   - ad: Eğitilen model
     deger: 4
@@ -130,3 +131,6 @@ karar_kaydi:
   - tarih: 2026-11-01
     karar: "Dengesizlik: ikili sınıflandırmada sınıf ağırlıklandırma; saldırı ailesi sınıflandırmasında ağırlıklandırma ve ağırlıklandırma + SMOTE karşılaştırılır. Ağırlıklar ve SMOTE her katın yalnızca kendi eğitim kısmından öğrenilir."
     gerekce: Dengeleme sızıntısız ve dört modelde aynı mantıkla yapılır; SMOTE yalnızca çok küçük sınıflara uygulanır.
+  - tarih: 2026-11-01
+    karar: İkili katmanda karar eşiği, katlar dışı tahminlerden önceden yazılmış bir yanlış alarm bütçesiyle seçilecek.
+    gerekce: Eşik, test kümesine bakılmadan, projenin yanlış alarm odağına uygun ve önceden yazılmış bir kuralla seçilir.
