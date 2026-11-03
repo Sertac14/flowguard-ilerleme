@@ -98,7 +98,7 @@
         <span>Takvim: Hafta 2/5</span>
       </div>
       <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" aria-label="Takvim: Hafta 2/5"><span style="width:40%"></span></div>
-      <p class="ozet">Ön işleme hattı ve model eğitimi (eğitim kümesinde 5 katlı çapraz doğrulama) tamamlandı; sonuçların analizi sürüyor. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (15 künye doğrulandı, 7 kaynak tam metinden incelendi).</p>
+      <p class="ozet">Ön işleme hattı ve model eğitimi altyapısı tamamlandı; hedef port kararından sonra veri katmanı yeniden üretildi ve modeller yeni veriyle yeniden eğitilecek. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
     </header>
 
     <section class="danisman" aria-labelledby="b-danisman">
@@ -131,6 +131,8 @@
     <section aria-labelledby="b-son">
       <h2 id="b-son">Son güncellemeden bu yana</h2>
       <ul class="liste">
+        <li>Üç temel kaynak daha tam metinden incelendi (SMOTE özgün yayını, CIC-IDS2017 hata analizi, algoritma karşılaştırma çalışması).</li>
+        <li>Veri katmanı yeni kurguya göre yeniden üretildi ve doğrulandı; modeller yeni veriyle yeniden eğitilecek.</li>
         <li>SMOTE özgün yayını ve algoritma karşılaştırma ekseni künye düzeyinde tamamlandı; CIC-IDS2017 Botnet sınıfının etiket sorunları üzerine literatür tarandı.</li>
         <li>Ön işleme hattı yazıldı: katmanlı eğitim/test bölmesi, çelişkili çiftler için ayrı ek test kümesi ve her katta yeniden öğrenilen doldurma, ölçekleme ve dengeleme adımları; 73 otomatik kontrolle doğrulandı.</li>
         <li>Dört model (Logistic Regression, Decision Tree, Random Forest, XGBoost) eğitim kümesinde 5 katlı çapraz doğrulamayla eğitildi; yanlış alarmların hangi saldırı ailesine karıştığı ve dengeleme yönteminin etkisi analiz ediliyor.</li>
@@ -146,9 +148,9 @@
       <h2 id="b-sayilar">Sayılarla ilerleme</h2>
       <div class="kartlar">
         <div class="kart">
-          <div class="deger">7/20</div>
+          <div class="deger">10/20</div>
           <div class="ad">Okunan kaynak</div>
-          <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="20" aria-valuenow="7" aria-label="Okunan kaynak"><span style="width:35%"></span></div>
+          <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="20" aria-valuenow="10" aria-label="Okunan kaynak"><span style="width:50%"></span></div>
         </div>
         <div class="kart">
           <div class="deger">4/4</div>
@@ -156,7 +158,7 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4" aria-label="Eğitilen model"><span style="width:100%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">15</div>
+          <div class="deger">17</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
@@ -282,6 +284,16 @@
             <td data-label="Tarih">01.11.2026</td>
             <td data-label="Karar">İkili katmanda karar eşiği, katlar dışı tahminlerden önceden yazılmış bir yanlış alarm bütçesiyle seçilecek.</td>
             <td data-label="Gerekçe">Eşik, test kümesine bakılmadan, projenin yanlış alarm odağına uygun ve önceden yazılmış bir kuralla seçilir.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">03.11.2026</td>
+            <td data-label="Karar">Hedef port bilgisi model girdisinden çıkarıldı.</td>
+            <td data-label="Gerekçe">Bu veri setinde bazı saldırı türleri tek bir hedef portla birebir eşleşiyor; model saldırı davranışı yerine portu öğrenebilir. Port&#x27;lu sonuçlar karşılaştırma için saklanır.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">03.11.2026</td>
+            <td data-label="Karar">Tekrar eden ve çelişkili kayıtların temizliği, modelin kullandığı özellikler üzerinden yeniden uygulandı.</td>
+            <td data-label="Gerekçe">Port çıkınca model açısından birbirinin aynısı olan kayıtlar oluştu; aynı kaydın hem eğitimde hem testte bulunmaması için.</td>
           </tr>
         </tbody>
       </table>

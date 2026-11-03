@@ -12,7 +12,7 @@ durum:
   son_guncelleme: 2026-11-03
   hafta: 2
   toplam_hafta: 5
-  ozet: Ön işleme hattı ve model eğitimi (eğitim kümesinde 5 katlı çapraz doğrulama) tamamlandı; sonuçların analizi sürüyor. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (15 künye doğrulandı, 7 kaynak tam metinden incelendi).
+  ozet: Ön işleme hattı ve model eğitimi altyapısı tamamlandı; hedef port kararından sonra veri katmanı yeniden üretildi ve modeller yeni veriyle yeniden eğitilecek. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -60,6 +60,8 @@ danisman_gorusu:
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
 
 son_guncellemeden_bu_yana:
+  - "Üç temel kaynak daha tam metinden incelendi (SMOTE özgün yayını, CIC-IDS2017 hata analizi, algoritma karşılaştırma çalışması)."
+  - "Veri katmanı yeni kurguya göre yeniden üretildi ve doğrulandı; modeller yeni veriyle yeniden eğitilecek."
   - "SMOTE özgün yayını ve algoritma karşılaştırma ekseni künye düzeyinde tamamlandı; CIC-IDS2017 Botnet sınıfının etiket sorunları üzerine literatür tarandı."
   - "Ön işleme hattı yazıldı: katmanlı eğitim/test bölmesi, çelişkili çiftler için ayrı ek test kümesi ve her katta yeniden öğrenilen doldurma, ölçekleme ve dengeleme adımları; 73 otomatik kontrolle doğrulandı."
   - "Dört model (Logistic Regression, Decision Tree, Random Forest, XGBoost) eğitim kümesinde 5 katlı çapraz doğrulamayla eğitildi; yanlış alarmların hangi saldırı ailesine karıştığı ve dengeleme yönteminin etkisi analiz ediliyor."
@@ -71,7 +73,7 @@ son_guncellemeden_bu_yana:
 
 sayilar:
   - ad: Okunan kaynak
-    deger: 7
+    deger: 10
     hedef: 20
   - ad: Eğitilen model
     deger: 4
@@ -134,3 +136,9 @@ karar_kaydi:
   - tarih: 2026-11-01
     karar: İkili katmanda karar eşiği, katlar dışı tahminlerden önceden yazılmış bir yanlış alarm bütçesiyle seçilecek.
     gerekce: Eşik, test kümesine bakılmadan, projenin yanlış alarm odağına uygun ve önceden yazılmış bir kuralla seçilir.
+  - tarih: 2026-11-03
+    karar: Hedef port bilgisi model girdisinden çıkarıldı.
+    gerekce: "Bu veri setinde bazı saldırı türleri tek bir hedef portla birebir eşleşiyor; model saldırı davranışı yerine portu öğrenebilir. Port'lu sonuçlar karşılaştırma için saklanır."
+  - tarih: 2026-11-03
+    karar: Tekrar eden ve çelişkili kayıtların temizliği, modelin kullandığı özellikler üzerinden yeniden uygulandı.
+    gerekce: "Port çıkınca model açısından birbirinin aynısı olan kayıtlar oluştu; aynı kaydın hem eğitimde hem testte bulunmaması için."
