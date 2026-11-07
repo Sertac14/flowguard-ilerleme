@@ -25,7 +25,7 @@ plan:
     durum: tamam
   - hafta: 3
     tarih: 8–14 Kasım
-    konu: Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar
+    konu: Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu
     durum: bekliyor
   - hafta: 4
     tarih: 15–21 Kasım
@@ -37,31 +37,22 @@ plan:
     durum: bekliyor
 
 danisman_gorusu:
-  - konu: Nadir sınıflar için raporlama düzeni
-    aciklama: >-
-      Heartbleed (11), SQL Injection (21) ve Infiltration (36) satırla çok küçük; tek bir
-      %80/%20 bölmede test kümesine 3-8 satır düşüyor. Öneri üç katman: (1) ikili sınıflandırma
-      (normal/saldırı) ana deney, (2) saldırı ailesi bazında sınıflandırma, (3) 15 sınıf yalnızca
-      tekrarlı katmanlı çapraz doğrulama ile ve örnek sayılarıyla birlikte.
-      (7 Kasım'da karara bağlandı; karar kaydına bakınız)
-    soru: Bu üç katmanlı düzen uygun mu?
-  - konu: Çelişkili etiketli satırların silinmesi
-    aciklama: >-
-      Özellikleri birebir aynı ama etiketi farklı 272 akış çifti (544 satır, %0,024; port'suz ana kurgu)
-      ana deneyden silinir. Çiftlerin %20'si ayrı bir ek test kümesinde tutulur ve modeller
-      bununla da ölçülür; böylece silmenin sonuçları ne kadar iyimserleştirdiği görülür.
-    soru: Silme + ayrı ek test kümesi yaklaşımı yeterli mi?
-  - konu: Kapsam önceliği
-    aciklama: >-
-      UNSW-NB15 ile çapraz veri seti testi planda, ancak iki veri setinin özellikleri birebir
-      eşleşmiyor. Takvim sıkışırsa ilk ertelenecek iş bu. Koşullu: 14 Kasım'da önceden yazılmış üç koşula
-      göre değerlendirilecek. (7 Kasım'da karara bağlandı; karar kaydına bakınız)
-    soru: Çapraz veri seti testi sizce zorunlu mu, yoksa ek katkı olarak mı değerlendirilmeli?
   - konu: Teslim ve biçim
     aciklama: Rapor için yazım kılavuzu, sayfa sınırı, teslim ve sunum tarihleri henüz bende yok.
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
+  - konu: Sunum ve arayüz gösterimi
+    aciklama: 4. haftada Streamlit arayüzü geliştirilecek; kapsamı sunum biçimine göre belirlenecek.
+    soru: Sunumda arayüzün canlı gösterimi bekleniyor mu, yoksa ekran görüntüleri yeterli mi? Sunum süresi ne kadar?
+  - konu: Kısayol özelliklerinin raporlanması
+    aciklama: >-
+      Bazı özelliklerin (ör. başlangıç pencere değerleri) saldırgan makineye özgü bir iz taşıyabildiği
+      görüldü. Ana modeller bu özelliklerle kalıyor; etkileri raporda duyarlılık analizi ve sınırlılık
+      olarak veriliyor.
+    soru: Bu raporlama düzeyi yeterli mi?
 
 son_guncellemeden_bu_yana:
+  - "Üç ek analiz yapıldı: kısayol özelliklerinin kontrolü, ağaç modellerinde ölçeklemenin etkisi ve doğrusal model için log dönüşümü. Ana kurgu değişmedi; sonuçlar raporda duyarlılık analizi olarak yer alacak."
+  - "Özellik çıkarım aracının (CICFlowMeter) kaynak kodu iki sürümde incelendi; veri setindeki sabit, kopya ve tutarsız sütunların kod düzeyindeki nedenleri belirlendi (ör. bayrak sütunlarının başlıkları ile içerikleri arasında kayma)."
   - "Hedef port sütunu model girdisinden çıkarıldı; veri bu özellik kümesiyle yeniden temizlendi ve tüm modeller yeniden doğrulandı."
   - "Eğitim gerektirmeyen veri kontrolleri yapıldı (literatürde bildirilen etiket sorunlarının bizim verideki izleri)."
   - "Ön işleme akış şeması hazırlandı; raporun Veri Seti ve Ön İşleme bölümlerinin iskeletleri tamamlandı."
@@ -86,12 +77,12 @@ sayilar:
 # "Karar kaydı" kartı yayinla.py tarafından karar_kaydi listesinin uzunluğundan otomatik eklenir.
 
 one_cikan_bulgu:
-  baslik: Tekrar eden akışlar sınıflara eşit dağılmıyor
-  grafik: grafikler/02_tekrar_orani.png
+  baslik: Özellik çıkarım aracındaki hatalar veride iz bırakıyor
   aciklama: >-
-    SSH-Patator akışlarının %45'i, PortScan akışlarının %43'ü birebir tekrar. Tekrarlar
-    silinmeden yapılan bir değerlendirmede aynı akış hem eğitimde hem testte bulunabileceği için,
-    en çok bu saldırı türlerinin sonuçları olduğundan iyi görünür.
+    CIC-IDS2017'yi üreten aracın (CICFlowMeter) kaynak kodu incelendi. Bayrak sütunlarının başlıkları
+    ile taşıdıkları değerler birbirini tutmuyor ve bayraklar yalnızca akışın ilk paketinden sayılıyor;
+    veri setindeki sabit ve kopya sütunların da kod düzeyinde nedenleri var. Bu, özelliklerin adına
+    bakarak yorum yapmanın yanıltıcı olabileceğini gösteriyor.
 
 karar_kaydi:
   - tarih: 2026-10-25
@@ -153,3 +144,16 @@ karar_kaydi:
   - tarih: 2026-11-07
     karar: 15 orijinal saldırı etiketi için ayrı model eğitilmiyor; mevcut tahminler 15 etikete göre kırılarak raporlanacak (küçük etiketlerde oran yerine sayı).
     gerekce: En ince düzeyde saldırı türü raporu, yeni model eğitmeden; çok küçük sınıflarda güvenilir model kurulamaz.
+  - tarih: 2026-11-07
+    karar: Ek deneyler (kısayol kontrolü, ölçekleme ablasyonu, doğrusal model için log dönüşümü) ana kurguyu değiştirmez; yalnızca eğitim kümesinde çapraz doğrulamayla değerlendirilir, test kümesine uygulanmaz.
+    gerekce: Test kümesinin tek kullanımı korunur; sonuca bakarak kurgu seçilmesi önlenir. Kural deneylerden önce yazıldı.
+  - tarih: 2026-11-07
+    karar: Test kümesi açılmadan önce karar eşikleri, metrik betiği ve raporlama kuralları tek bir sürümde dondurulur; testte yalnızca ana modeller ölçülür.
+    gerekce: Test sonucu görüldükten sonra hiçbir seçimin değiştirilememesi.
+  - tarih: 2026-11-07
+    karar: Çapraz veri seti testi yalnızca modelin kullandığı 64 özelliğin tamamı eşleşirse yapılır; ortak alt kümeyle yeni model kurulmaz.
+    gerekce: Son modeller ek eğitim ve eşik seçimi olmadan, olduğu gibi sınanır. 25.10.2026 kararındaki 'ortak özellik alt kümesi' ifadesini daraltır.
+
+# Karar tablosunun altındaki "Düzeltmeler" notları (karar sayılmaz; kart sayısına eklenmez). İsteğe bağlı.
+karar_notlari:
+  - "Düzeltme (07.11.2026): 26.10.2026 kararındaki 'eksik değer göstergeleri eğitimden öğrenilir' ifadesi — göstergeler veriden öğrenilmez; sabit bir sütun listesine bağlıdır (1 Kasım'dan beri)."
