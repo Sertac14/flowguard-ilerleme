@@ -94,11 +94,11 @@
       <p class="baslik">Makine Öğrenmesi Tabanlı Ağ Trafiği Analizi ve Siber Tehdit Tespit Sistemi</p>
       <p class="odak"><strong>Odak:</strong> Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği</p>
       <div class="satir">
-        <span>Son güncelleme: 3 Kasım 2026</span>
+        <span>Son güncelleme: 7 Kasım 2026</span>
         <span>Takvim: Hafta 2/5</span>
       </div>
       <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" aria-label="Takvim: Hafta 2/5"><span style="width:40%"></span></div>
-      <p class="ozet">Ön işleme hattı ve model eğitimi altyapısı tamamlandı; hedef port kararından sonra veri katmanı yeniden üretildi ve modeller yeni veriyle yeniden eğitilecek. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
+      <p class="ozet">Ön işleme hattı tamamlandı; hedef port kararından sonra veri yeniden temizlendi ve dört model yeni veriyle yeniden değerlendirildi. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
     </header>
 
     <section class="danisman" aria-labelledby="b-danisman">
@@ -107,17 +107,17 @@
       <ol>
         <li>
           <h3>Nadir sınıflar için raporlama düzeni</h3>
-          <p>Heartbleed (11), SQL Injection (21) ve Infiltration (36) satırla çok küçük; tek bir %80/%20 bölmede test kümesine 3-8 satır düşüyor. Öneri üç katman: (1) ikili sınıflandırma (normal/saldırı) ana deney, (2) saldırı ailesi bazında sınıflandırma, (3) 15 sınıf yalnızca tekrarlı katmanlı çapraz doğrulama ile ve örnek sayılarıyla birlikte.</p>
+          <p>Heartbleed (11), SQL Injection (21) ve Infiltration (36) satırla çok küçük; tek bir %80/%20 bölmede test kümesine 3-8 satır düşüyor. Öneri üç katman: (1) ikili sınıflandırma (normal/saldırı) ana deney, (2) saldırı ailesi bazında sınıflandırma, (3) 15 sınıf yalnızca tekrarlı katmanlı çapraz doğrulama ile ve örnek sayılarıyla birlikte. (7 Kasım&#x27;da karara bağlandı; karar kaydına bakınız)</p>
           <p class="soru"><span>Soru</span> Bu üç katmanlı düzen uygun mu?</p>
         </li>
         <li>
           <h3>Çelişkili etiketli satırların silinmesi</h3>
-          <p>Özellikleri birebir aynı ama etiketi farklı 698 akış çifti (1.396 satır, verinin %0,055&#x27;i) ana deneyden silinir. Çiftlerin %20&#x27;si ayrı bir ek test kümesinde tutulur ve modeller bununla da ölçülür; böylece silmenin sonuçları ne kadar iyimserleştirdiği görülür.</p>
+          <p>Özellikleri birebir aynı ama etiketi farklı 272 akış çifti (544 satır, %0,024; port&#x27;suz ana kurgu) ana deneyden silinir. Çiftlerin %20&#x27;si ayrı bir ek test kümesinde tutulur ve modeller bununla da ölçülür; böylece silmenin sonuçları ne kadar iyimserleştirdiği görülür.</p>
           <p class="soru"><span>Soru</span> Silme + ayrı ek test kümesi yaklaşımı yeterli mi?</p>
         </li>
         <li>
           <h3>Kapsam önceliği</h3>
-          <p>UNSW-NB15 ile çapraz veri seti testi planda, ancak iki veri setinin özellikleri birebir eşleşmiyor. Takvim sıkışırsa ilk ertelenecek iş bu.</p>
+          <p>UNSW-NB15 ile çapraz veri seti testi planda, ancak iki veri setinin özellikleri birebir eşleşmiyor. Takvim sıkışırsa ilk ertelenecek iş bu. Koşullu: 14 Kasım&#x27;da önceden yazılmış üç koşula göre değerlendirilecek. (7 Kasım&#x27;da karara bağlandı; karar kaydına bakınız)</p>
           <p class="soru"><span>Soru</span> Çapraz veri seti testi sizce zorunlu mu, yoksa ek katkı olarak mı değerlendirilmeli?</p>
         </li>
         <li>
@@ -131,8 +131,11 @@
     <section aria-labelledby="b-son">
       <h2 id="b-son">Son güncellemeden bu yana</h2>
       <ul class="liste">
+        <li>Hedef port sütunu model girdisinden çıkarıldı; veri bu özellik kümesiyle yeniden temizlendi ve tüm modeller yeniden doğrulandı.</li>
+        <li>Eğitim gerektirmeyen veri kontrolleri yapıldı (literatürde bildirilen etiket sorunlarının bizim verideki izleri).</li>
+        <li>Ön işleme akış şeması hazırlandı; raporun Veri Seti ve Ön İşleme bölümlerinin iskeletleri tamamlandı.</li>
         <li>Üç temel kaynak daha tam metinden incelendi (SMOTE özgün yayını, CIC-IDS2017 hata analizi, algoritma karşılaştırma çalışması).</li>
-        <li>Veri katmanı yeni kurguya göre yeniden üretildi ve doğrulandı; modeller yeni veriyle yeniden eğitilecek.</li>
+        <li>Veri katmanı yeni kurguya göre yeniden üretildi ve doğrulandı.</li>
         <li>SMOTE özgün yayını ve algoritma karşılaştırma ekseni künye düzeyinde tamamlandı; CIC-IDS2017 Botnet sınıfının etiket sorunları üzerine literatür tarandı.</li>
         <li>Ön işleme hattı yazıldı: katmanlı eğitim/test bölmesi, çelişkili çiftler için ayrı ek test kümesi ve her katta yeniden öğrenilen doldurma, ölçekleme ve dengeleme adımları; 73 otomatik kontrolle doğrulandı.</li>
         <li>Dört model (Logistic Regression, Decision Tree, Random Forest, XGBoost) eğitim kümesinde 5 katlı çapraz doğrulamayla eğitildi; yanlış alarmların hangi saldırı ailesine karıştığı ve dengeleme yönteminin etkisi analiz ediliyor.</li>
@@ -158,7 +161,7 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4" aria-label="Eğitilen model"><span style="width:100%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">17</div>
+          <div class="deger">19</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
@@ -185,11 +188,11 @@
         <li class="aktif">
           <div class="hafta">Hafta 2<span>1–7 Kasım</span></div>
           <div class="konu">Ön işleme hattı (Pipeline), sınıf dengesizliği stratejileri, model eğitimi</div>
-          <span class="rozet devam">Devam ediyor</span>
+          <span class="rozet tamam">Tamamlandı</span>
         </li>
         <li>
           <div class="hafta">Hafta 3<span>8–14 Kasım</span></div>
-          <div class="konu">Model karşılaştırması, saldırı türü bazında metrikler, çapraz veri seti testi</div>
+          <div class="konu">Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar</div>
           <span class="rozet bekliyor">Bekliyor</span>
         </li>
         <li>
@@ -295,11 +298,21 @@
             <td data-label="Karar">Tekrar eden ve çelişkili kayıtların temizliği, modelin kullandığı özellikler üzerinden yeniden uygulandı.</td>
             <td data-label="Gerekçe">Port çıkınca model açısından birbirinin aynısı olan kayıtlar oluştu; aynı kaydın hem eğitimde hem testte bulunmaması için.</td>
           </tr>
+          <tr>
+            <td data-label="Tarih">07.11.2026</td>
+            <td data-label="Karar">Çapraz veri seti testi (UNSW-NB15) şimdilik yapılmıyor; 14 Kasım&#x27;da önceden yazılmış üç koşula göre yeniden değerlendirilecek.</td>
+            <td data-label="Gerekçe">Test son modellere bağlı (3. hafta); veri setinin atıf künyesi henüz doğrulanmadı.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">07.11.2026</td>
+            <td data-label="Karar">15 orijinal saldırı etiketi için ayrı model eğitilmiyor; mevcut tahminler 15 etikete göre kırılarak raporlanacak (küçük etiketlerde oran yerine sayı).</td>
+            <td data-label="Gerekçe">En ince düzeyde saldırı türü raporu, yeni model eğitmeden; çok küçük sınıflarda güvenilir model kurulamaz.</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
-    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 3 Kasım 2026.</footer>
+    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 7 Kasım 2026.</footer>
   </main>
 </body>
 </html>
