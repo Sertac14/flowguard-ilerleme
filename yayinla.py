@@ -138,20 +138,29 @@ for i, s in enumerate(sayilar, start=1):
             dur(f"sayilar[{i}] ('{s['ad']}'): değer {s['deger']} hedefi {s['hedef']} aşıyor ya da hedef geçersiz")
 
 bulgu = gerekli(veri, "one_cikan_bulgu", "", dict)
-for k in ("baslik", "grafik", "aciklama"):
+for k in ("baslik", "aciklama"):
     gerekli(bulgu, k, "one_cikan_bulgu.")
-grafik_yolu = (KLASOR / str(bulgu["grafik"])).resolve()
-if GRAFIK_KLASOR.resolve() not in grafik_yolu.parents:
-    dur(f"one_cikan_bulgu.grafik 'grafikler/' klasörü içinde olmalı -> {bulgu['grafik']}")
-if not grafik_yolu.is_file():
-    dur(f"one_cikan_bulgu.grafik dosyası yok -> {bulgu['grafik']}")
-genislik, yukseklik = png_boyut(grafik_yolu)
+# grafik isteğe bağlı: alan yoksa sayfada grafik bloğu basılmaz; varsa denetimler aynen uygulanır
+grafik_var = "grafik" in bulgu
+if grafik_var:
+    gerekli(bulgu, "grafik", "one_cikan_bulgu.")
+    grafik_yolu = (KLASOR / str(bulgu["grafik"])).resolve()
+    if GRAFIK_KLASOR.resolve() not in grafik_yolu.parents:
+        dur(f"one_cikan_bulgu.grafik 'grafikler/' klasörü içinde olmalı -> {bulgu['grafik']}")
+    if not grafik_yolu.is_file():
+        dur(f"one_cikan_bulgu.grafik dosyası yok -> {bulgu['grafik']}")
+    genislik, yukseklik = png_boyut(grafik_yolu)
 
 kararlar = gerekli(veri, "karar_kaydi", "", list)
 for i, k in enumerate(kararlar, start=1):
     tarih_al(gerekli(k, "tarih", f"karar_kaydi[{i}]."), f"karar_kaydi[{i}].tarih")
     gerekli(k, "karar", f"karar_kaydi[{i}].")
     gerekli(k, "gerekce", f"karar_kaydi[{i}].")
+
+# karar_notlari isteğe bağlı: karar tablosunun altında "Düzeltmeler" başlığıyla basılır; karar sayısına eklenmez
+karar_notlari = veri.get("karar_notlari") or []
+if not isinstance(karar_notlari, list) or any(not isinstance(n, str) or not n.strip() for n in karar_notlari):
+    dur("durum.yml: 'karar_notlari' boş olmayan metinlerden oluşan bir liste olmalı")
 
 # ----------------------------------------------------------------------
 # 2) HTML parçaları
@@ -206,6 +215,15 @@ karar_html = "\n".join(
           </tr>"""
     for k in kararlar
 )
+
+# İsteğe bağlı bloklar: alan yoksa boş dize (sayfa önceki sürümle birebir aynı kalır)
+figur_html = (f"""      <figure>
+        <a href="{e(bulgu['grafik'])}"><img src="{e(bulgu['grafik'])}" width="{genislik}" height="{yukseklik}" alt="Grafik: {e(bulgu['baslik'])}"></a>
+      </figure>
+""" if grafik_var else "")
+notlar_html = ("      <h3>Düzeltmeler</h3>\n      <ul class=\"liste\">\n"
+               + "".join(f"        <li>{e(n)}</li>\n" for n in karar_notlari)
+               + "      </ul>\n") if karar_notlari else ""
 
 CSS = """
     :root {
@@ -337,10 +355,7 @@ sayfa = f"""<!DOCTYPE html>
     <section aria-labelledby="b-bulgu">
       <h2 id="b-bulgu">Öne çıkan bulgu</h2>
       <h3>{e(bulgu['baslik'])}</h3>
-      <figure>
-        <a href="{e(bulgu['grafik'])}"><img src="{e(bulgu['grafik'])}" width="{genislik}" height="{yukseklik}" alt="Grafik: {e(bulgu['baslik'])}"></a>
-      </figure>
-      <p>{e(bulgu['aciklama'])}</p>
+{figur_html}      <p>{e(bulgu['aciklama'])}</p>
     </section>
 
     <section aria-labelledby="b-plan">
@@ -358,7 +373,7 @@ sayfa = f"""<!DOCTYPE html>
 {karar_html}
         </tbody>
       </table>
-    </section>
+{notlar_html}    </section>
 
     <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: {e(tarih_uzun(son_guncelleme))}.</footer>
   </main>
@@ -375,4 +390,5 @@ if re.search(r"<script", sayfa, re.IGNORECASE):
 CIKTI.write_text(sayfa, encoding="utf-8", newline="\n")
 print(f"Üretildi: {CIKTI.name} ({len(sayfa.encode('utf-8')):,} bayt)")
 print(f"  {takvim} (çubuk %{yuzde}) | danışman konusu: {len(gorusler)} | sayı kartı: {len(kartlar)} "
-      f"(karar kaydı: {len(kararlar)}) | plan: {len(plan)} hafta | grafik: {bulgu['grafik']} ({genislik}x{yukseklik})")
+      f"(karar kaydı: {len(kararlar)}) | karar notu: {len(karar_notlari)} | plan: {len(plan)} hafta | grafik: "
+      + (f"{bulgu['grafik']} ({genislik}x{yukseklik})" if grafik_var else "yok"))
