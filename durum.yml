@@ -10,9 +10,9 @@ proje:
 
 durum:
   son_guncelleme: 2026-11-07
-  hafta: 2
+  hafta: 3
   toplam_hafta: 5
-  ozet: Ön işleme hattı tamamlandı; hedef port kararından sonra veri yeniden temizlendi ve dört model yeni veriyle yeniden değerlendirildi. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).
+  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, sonuçlar yorumlanıyor. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -26,7 +26,7 @@ plan:
   - hafta: 3
     tarih: 8–14 Kasım
     konu: Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu
-    durum: bekliyor
+    durum: devam
   - hafta: 4
     tarih: 15–21 Kasım
     konu: Streamlit arayüzü
@@ -51,21 +51,10 @@ danisman_gorusu:
     soru: Bu raporlama düzeyi yeterli mi?
 
 son_guncellemeden_bu_yana:
-  - "Üç ek analiz yapıldı: kısayol özelliklerinin kontrolü, ağaç modellerinde ölçeklemenin etkisi ve doğrusal model için log dönüşümü. Ana kurgu değişmedi; sonuçlar raporda duyarlılık analizi olarak yer alacak."
-  - "Özellik çıkarım aracının (CICFlowMeter) kaynak kodu iki sürümde incelendi; veri setindeki sabit, kopya ve tutarsız sütunların kod düzeyindeki nedenleri belirlendi (ör. bayrak sütunlarının başlıkları ile içerikleri arasında kayma)."
-  - "Hedef port sütunu model girdisinden çıkarıldı; veri bu özellik kümesiyle yeniden temizlendi ve tüm modeller yeniden doğrulandı."
-  - "Eğitim gerektirmeyen veri kontrolleri yapıldı (literatürde bildirilen etiket sorunlarının bizim verideki izleri)."
-  - "Ön işleme akış şeması hazırlandı; raporun Veri Seti ve Ön İşleme bölümlerinin iskeletleri tamamlandı."
-  - "Üç temel kaynak daha tam metinden incelendi (SMOTE özgün yayını, CIC-IDS2017 hata analizi, algoritma karşılaştırma çalışması)."
-  - "Veri katmanı yeni kurguya göre yeniden üretildi ve doğrulandı."
-  - "SMOTE özgün yayını ve algoritma karşılaştırma ekseni künye düzeyinde tamamlandı; CIC-IDS2017 Botnet sınıfının etiket sorunları üzerine literatür tarandı."
-  - "Ön işleme hattı yazıldı: katmanlı eğitim/test bölmesi, çelişkili çiftler için ayrı ek test kümesi ve her katta yeniden öğrenilen doldurma, ölçekleme ve dengeleme adımları; 73 otomatik kontrolle doğrulandı."
-  - "Dört model (Logistic Regression, Decision Tree, Random Forest, XGBoost) eğitim kümesinde 5 katlı çapraz doğrulamayla eğitildi; yanlış alarmların hangi saldırı ailesine karıştığı ve dengeleme yönteminin etkisi analiz ediliyor."
-  - "Değerlendirme tasarımı kesinleşti: katmanlı eğitim/test bölmesi, eğitim içinde 5 katlı çapraz doğrulama, test kümesinin yalnızca en sonda bir kez kullanılması ve yanlış alarm odaklı metrik seti."
-  - "Literatür: 15 kaynağın künyesi doğrulandı (1. hafta hedefi 10–12 aşıldı); değerlendirme metrikleri ve makine öğrenmesi yöntem hataları üzerine temel kaynaklar eklendi."
-  - Keşifsel veri analizi ortak veri modülüne bağlandı; grafikler kesin aile şemasıyla yeniden üretildi.
-  - "2. haftanın ilk işi erken tamamlandı: temizlik adımları tek bir ortak veri modülünde toplandı ve tüm sayılar bağımsız bir kontrol betiğiyle doğrulandı (temizlik sonrası 2.520.859 akış, 65 özellik)."
-  - Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.
+  - "Karar eşikleri, önceden yazılmış bir ölçüte göre eğitim kümesindeki çapraz doğrulama tahminlerinden seçildi."
+  - "Saldırı türü bazında (15 etiket) raporlama tabloları hazırlandı."
+  - "Test öncesinde tüm seçimler (eşikler, metrik kodu, raporlama kuralları) sürüm kontrolünde donduruldu; dört algoritma iki sınıflandırma düzeyinde tüm eğitim kümesiyle son kez eğitildi."
+  - "Test kümesi tek bir koşuyla ölçüldü. Sonuçlar yorumlanıyor; yorum tamamlanınca özet olarak paylaşılacak."
 
 sayilar:
   - ad: Okunan kaynak
@@ -153,6 +142,12 @@ karar_kaydi:
   - tarih: 2026-11-07
     karar: Çapraz veri seti testi yalnızca modelin kullandığı 64 özelliğin tamamı eşleşirse yapılır; ortak alt kümeyle yeni model kurulmaz.
     gerekce: Son modeller ek eğitim ve eşik seçimi olmadan, olduğu gibi sınanır. 25.10.2026 kararındaki 'ortak özellik alt kümesi' ifadesini daraltır.
+  - tarih: 2026-11-07
+    karar: İkili sınıflandırmada karar eşiği, eğitim kümesindeki çapraz doğrulama tahminlerinden, yanlış alarm oranı en fazla %0,1 olacak biçimde seçildi; aynı başarıyı veren eşikler arasında daha az yanlış alarm vereni tercih edildi.
+    gerekce: Seçim kuralı ve okuma ölçütü eşik sonuçları görülmeden önce yazılıp kaydedildi; test kümesi kullanılmadı.
+  - tarih: 2026-11-07
+    karar: Test sonuçları yorumlanıp rapora işlenmeden panoda sayısal sonuç yayımlanmaz.
+    gerekce: Sonuçların bağlamından koparılmadan, yorumuyla birlikte paylaşılması.
 
 # Karar tablosunun altındaki "Düzeltmeler" notları (karar sayılmaz; kart sayısına eklenmez). İsteğe bağlı.
 karar_notlari:

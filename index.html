@@ -95,10 +95,10 @@
       <p class="odak"><strong>Odak:</strong> Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği</p>
       <div class="satir">
         <span>Son güncelleme: 7 Kasım 2026</span>
-        <span>Takvim: Hafta 2/5</span>
+        <span>Takvim: Hafta 3/5</span>
       </div>
-      <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" aria-label="Takvim: Hafta 2/5"><span style="width:40%"></span></div>
-      <p class="ozet">Ön işleme hattı tamamlandı; hedef port kararından sonra veri yeniden temizlendi ve dört model yeni veriyle yeniden değerlendirildi. Test kümesi henüz kullanılmadı. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
+      <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" aria-label="Takvim: Hafta 3/5"><span style="width:60%"></span></div>
+      <p class="ozet">Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, sonuçlar yorumlanıyor. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
     </header>
 
     <section class="danisman" aria-labelledby="b-danisman">
@@ -126,21 +126,10 @@
     <section aria-labelledby="b-son">
       <h2 id="b-son">Son güncellemeden bu yana</h2>
       <ul class="liste">
-        <li>Üç ek analiz yapıldı: kısayol özelliklerinin kontrolü, ağaç modellerinde ölçeklemenin etkisi ve doğrusal model için log dönüşümü. Ana kurgu değişmedi; sonuçlar raporda duyarlılık analizi olarak yer alacak.</li>
-        <li>Özellik çıkarım aracının (CICFlowMeter) kaynak kodu iki sürümde incelendi; veri setindeki sabit, kopya ve tutarsız sütunların kod düzeyindeki nedenleri belirlendi (ör. bayrak sütunlarının başlıkları ile içerikleri arasında kayma).</li>
-        <li>Hedef port sütunu model girdisinden çıkarıldı; veri bu özellik kümesiyle yeniden temizlendi ve tüm modeller yeniden doğrulandı.</li>
-        <li>Eğitim gerektirmeyen veri kontrolleri yapıldı (literatürde bildirilen etiket sorunlarının bizim verideki izleri).</li>
-        <li>Ön işleme akış şeması hazırlandı; raporun Veri Seti ve Ön İşleme bölümlerinin iskeletleri tamamlandı.</li>
-        <li>Üç temel kaynak daha tam metinden incelendi (SMOTE özgün yayını, CIC-IDS2017 hata analizi, algoritma karşılaştırma çalışması).</li>
-        <li>Veri katmanı yeni kurguya göre yeniden üretildi ve doğrulandı.</li>
-        <li>SMOTE özgün yayını ve algoritma karşılaştırma ekseni künye düzeyinde tamamlandı; CIC-IDS2017 Botnet sınıfının etiket sorunları üzerine literatür tarandı.</li>
-        <li>Ön işleme hattı yazıldı: katmanlı eğitim/test bölmesi, çelişkili çiftler için ayrı ek test kümesi ve her katta yeniden öğrenilen doldurma, ölçekleme ve dengeleme adımları; 73 otomatik kontrolle doğrulandı.</li>
-        <li>Dört model (Logistic Regression, Decision Tree, Random Forest, XGBoost) eğitim kümesinde 5 katlı çapraz doğrulamayla eğitildi; yanlış alarmların hangi saldırı ailesine karıştığı ve dengeleme yönteminin etkisi analiz ediliyor.</li>
-        <li>Değerlendirme tasarımı kesinleşti: katmanlı eğitim/test bölmesi, eğitim içinde 5 katlı çapraz doğrulama, test kümesinin yalnızca en sonda bir kez kullanılması ve yanlış alarm odaklı metrik seti.</li>
-        <li>Literatür: 15 kaynağın künyesi doğrulandı (1. hafta hedefi 10–12 aşıldı); değerlendirme metrikleri ve makine öğrenmesi yöntem hataları üzerine temel kaynaklar eklendi.</li>
-        <li>Keşifsel veri analizi ortak veri modülüne bağlandı; grafikler kesin aile şemasıyla yeniden üretildi.</li>
-        <li>2. haftanın ilk işi erken tamamlandı: temizlik adımları tek bir ortak veri modülünde toplandı ve tüm sayılar bağımsız bir kontrol betiğiyle doğrulandı (temizlik sonrası 2.520.859 akış, 65 özellik).</li>
-        <li>Veri incelemesindeki gözlemlerin çoğu (bayrak sütunları, yük taşımayan web saldırısı akışları, kısayol özellikleri) literatürde belgelenmiş özellik çıkarım hatalarıyla eşleşti.</li>
+        <li>Karar eşikleri, önceden yazılmış bir ölçüte göre eğitim kümesindeki çapraz doğrulama tahminlerinden seçildi.</li>
+        <li>Saldırı türü bazında (15 etiket) raporlama tabloları hazırlandı.</li>
+        <li>Test öncesinde tüm seçimler (eşikler, metrik kodu, raporlama kuralları) sürüm kontrolünde donduruldu; dört algoritma iki sınıflandırma düzeyinde tüm eğitim kümesiyle son kez eğitildi.</li>
+        <li>Test kümesi tek bir koşuyla ölçüldü. Sonuçlar yorumlanıyor; yorum tamamlanınca özet olarak paylaşılacak.</li>
       </ul>
     </section>
 
@@ -158,7 +147,7 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4" aria-label="Eğitilen model"><span style="width:100%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">22</div>
+          <div class="deger">24</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
@@ -179,15 +168,15 @@
           <div class="konu">Ortam, veri inceleme, keşifsel veri analizi (EDA), literatür taramasının başlangıcı</div>
           <span class="rozet tamam">Tamamlandı</span>
         </li>
-        <li class="aktif">
+        <li>
           <div class="hafta">Hafta 2<span>1–7 Kasım</span></div>
           <div class="konu">Ön işleme hattı (Pipeline), sınıf dengesizliği stratejileri, model eğitimi</div>
           <span class="rozet tamam">Tamamlandı</span>
         </li>
-        <li>
+        <li class="aktif">
           <div class="hafta">Hafta 3<span>8–14 Kasım</span></div>
           <div class="konu">Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu</div>
-          <span class="rozet bekliyor">Bekliyor</span>
+          <span class="rozet devam">Devam ediyor</span>
         </li>
         <li>
           <div class="hafta">Hafta 4<span>15–21 Kasım</span></div>
@@ -316,6 +305,16 @@
             <td data-label="Tarih">07.11.2026</td>
             <td data-label="Karar">Çapraz veri seti testi yalnızca modelin kullandığı 64 özelliğin tamamı eşleşirse yapılır; ortak alt kümeyle yeni model kurulmaz.</td>
             <td data-label="Gerekçe">Son modeller ek eğitim ve eşik seçimi olmadan, olduğu gibi sınanır. 25.10.2026 kararındaki &#x27;ortak özellik alt kümesi&#x27; ifadesini daraltır.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">07.11.2026</td>
+            <td data-label="Karar">İkili sınıflandırmada karar eşiği, eğitim kümesindeki çapraz doğrulama tahminlerinden, yanlış alarm oranı en fazla %0,1 olacak biçimde seçildi; aynı başarıyı veren eşikler arasında daha az yanlış alarm vereni tercih edildi.</td>
+            <td data-label="Gerekçe">Seçim kuralı ve okuma ölçütü eşik sonuçları görülmeden önce yazılıp kaydedildi; test kümesi kullanılmadı.</td>
+          </tr>
+          <tr>
+            <td data-label="Tarih">07.11.2026</td>
+            <td data-label="Karar">Test sonuçları yorumlanıp rapora işlenmeden panoda sayısal sonuç yayımlanmaz.</td>
+            <td data-label="Gerekçe">Sonuçların bağlamından koparılmadan, yorumuyla birlikte paylaşılması.</td>
           </tr>
         </tbody>
       </table>
