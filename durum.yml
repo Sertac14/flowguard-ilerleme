@@ -9,10 +9,10 @@ proje:
   odak: Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği
 
 durum:
-  son_guncelleme: 2026-11-07
+  son_guncelleme: 2026-11-08
   hafta: 3
   toplam_hafta: 5
-  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, sonuçlar yorumlanıyor. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).
+  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışmasına 11 Kasım'da başlanıyor. Literatür taraması sürüyor (22 künye doğrulandı, 10 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -25,7 +25,7 @@ plan:
     durum: tamam
   - hafta: 3
     tarih: 8–14 Kasım
-    konu: Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu
+    konu: Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu. Streamlit arayüzüne 11 Kasım'da başlanıyor.
     durum: devam
   - hafta: 4
     tarih: 15–21 Kasım
@@ -41,7 +41,7 @@ danisman_gorusu:
     aciklama: Rapor için yazım kılavuzu, sayfa sınırı, teslim ve sunum tarihleri henüz bende yok.
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
   - konu: Sunum ve arayüz gösterimi
-    aciklama: 4. haftada Streamlit arayüzü geliştirilecek; kapsamı sunum biçimine göre belirlenecek.
+    aciklama: Streamlit arayüzüne 11 Kasım'da başlanıyor; kapsamı sunum biçimine göre belirlenecek.
     soru: Sunumda arayüzün canlı gösterimi bekleniyor mu, yoksa ekran görüntüleri yeterli mi? Sunum süresi ne kadar?
   - konu: Kısayol özelliklerinin raporlanması
     aciklama: >-
@@ -54,7 +54,7 @@ son_guncellemeden_bu_yana:
   - "Karar eşikleri, önceden yazılmış bir ölçüte göre eğitim kümesindeki çapraz doğrulama tahminlerinden seçildi."
   - "Saldırı türü bazında (15 etiket) raporlama tabloları hazırlandı."
   - "Test öncesinde tüm seçimler (eşikler, metrik kodu, raporlama kuralları) sürüm kontrolünde donduruldu; dört algoritma iki sınıflandırma düzeyinde tüm eğitim kümesiyle son kez eğitildi."
-  - "Test kümesi tek bir koşuyla ölçüldü. Sonuçlar yorumlanıyor; yorum tamamlanınca özet olarak paylaşılacak."
+  - "Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor."
 
 sayilar:
   - ad: Okunan kaynak
@@ -65,13 +65,34 @@ sayilar:
     hedef: 4
 # "Karar kaydı" kartı yayinla.py tarafından karar_kaydi listesinin uzunluğundan otomatik eklenir.
 
+test_sonuclari:
+  # Değerler kod deposundaki test metrik çıktısından (ikili katman, seçilen eşik) betikle aktarıldı; elle yazılmaz.
+  # FPR = FP / (FP + TN), recall = TP / (TP + FN); yüzde olarak, panodaki ondalık sayısına yuvarlanmış.
+  baslik: Test sonuçları (ikili sınıflandırma, seçilen eşikte)
+  satirlar:
+    - model: XGBoost
+      fpr_yuzde: 0.0988
+      recall_yuzde: 99.96
+    - model: Karar ağacı (Decision Tree)
+      fpr_yuzde: 0.0443
+      recall_yuzde: 99.75
+    - model: Lojistik regresyon (Logistic Regression)
+      fpr_yuzde: 0.1054
+      recall_yuzde: 69.47
+    - model: Rastgele Orman (Random Forest)
+      fpr_yuzde: 0.1002
+      recall_yuzde: 99.81
+  not: "Tek test ölçümü (7 Kasım 2026). Karar eşiği yalnızca eğitim verisinde, en fazla %0,1 yanlış alarm hedefine göre seçildi; test kümesi bir kez kullanıldı. Lojistik regresyon ve Rastgele Orman'da testteki oran hedefin hafif üzerinde; değerler olduğu gibi gösteriliyor."
+
 one_cikan_bulgu:
   baslik: Özellik çıkarım aracındaki hatalar veride iz bırakıyor
   aciklama: >-
-    CIC-IDS2017'yi üreten aracın (CICFlowMeter) kaynak kodu incelendi. Bayrak sütunlarının başlıkları
-    ile taşıdıkları değerler birbirini tutmuyor ve bayraklar yalnızca akışın ilk paketinden sayılıyor;
-    veri setindeki sabit ve kopya sütunların da kod düzeyinde nedenleri var. Bu, özelliklerin adına
-    bakarak yorum yapmanın yanıltıcı olabileceğini gösteriyor.
+    CIC-IDS2017'yi üreten aracın (CICFlowMeter) erişilebilen kaynak kodu incelendi. İncelenen
+    sürümde bayrak sütunlarının başlıkları ile taşıdıkları değerler birbirini tutmuyor ve bayraklar
+    yalnızca akışın ilk paketinden sayılıyor; veri setindeki sabit ve kopya sütunlar da bu
+    davranışlarla açıklanıyor. Benzer hesaplama hataları literatürde de bildirilmiştir (Rosay ve
+    ark., 2022). Veri setini üreten sürüm erişilebilir olmadığı için bulgular dolaylıdır. Bu,
+    özelliklerin adına bakarak yorum yapmanın yanıltıcı olabileceğini gösteriyor.
 
 karar_kaydi:
   - tarih: 2026-10-25
@@ -148,7 +169,11 @@ karar_kaydi:
   - tarih: 2026-11-07
     karar: Test sonuçları yorumlanıp rapora işlenmeden panoda sayısal sonuç yayımlanmaz.
     gerekce: Sonuçların bağlamından koparılmadan, yorumuyla birlikte paylaşılması.
+  - tarih: 2026-11-07
+    karar: Panoda yalnızca ikili sınıflandırmanın test yanlış alarm oranı ve saldırı yakalama oranı yayımlanır.
+    gerekce: Odak metrikler bunlar; ayrıntılı sonuçlar raporda yer alır.
 
 # Karar tablosunun altındaki "Düzeltmeler" notları (karar sayılmaz; kart sayısına eklenmez). İsteğe bağlı.
 karar_notlari:
   - "Düzeltme (07.11.2026): 26.10.2026 kararındaki 'eksik değer göstergeleri eğitimden öğrenilir' ifadesi — göstergeler veriden öğrenilmez; sabit bir sütun listesine bağlıdır (1 Kasım'dan beri)."
+  - "Düzeltme (08.11.2026): 07.11.2026 tarihli 'Test sonuçları yorumlanıp rapora işlenmeden panoda sayısal sonuç yayımlanmaz' kararına aynı tarihli yeni kararla bir istisna getirildi: ikili sınıflandırmanın test yanlış alarm oranı ve saldırı yakalama oranı yayımlanır. Diğer test sonuçları için eski karar geçerlidir; bu sonuçlar raporda yer alır."

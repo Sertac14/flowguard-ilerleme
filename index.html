@@ -84,6 +84,8 @@
       td { border: 0; padding: 4px 12px; }
       td::before { content: attr(data-label); display: block; font-size: .8rem; color: var(--metin2); font-weight: 600; }
     }
+    table.test td.sayi { font-variant-numeric: tabular-nums; }
+    .test-not { color: var(--metin2); font-size: .9rem; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -94,11 +96,11 @@
       <p class="baslik">Makine Öğrenmesi Tabanlı Ağ Trafiği Analizi ve Siber Tehdit Tespit Sistemi</p>
       <p class="odak"><strong>Odak:</strong> Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği</p>
       <div class="satir">
-        <span>Son güncelleme: 7 Kasım 2026</span>
+        <span>Son güncelleme: 8 Kasım 2026</span>
         <span>Takvim: Hafta 3/5</span>
       </div>
       <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" aria-label="Takvim: Hafta 3/5"><span style="width:60%"></span></div>
-      <p class="ozet">Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, sonuçlar yorumlanıyor. Literatür taraması sürüyor (20 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
+      <p class="ozet">Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışmasına 11 Kasım&#x27;da başlanıyor. Literatür taraması sürüyor (22 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
     </header>
 
     <section class="danisman" aria-labelledby="b-danisman">
@@ -112,7 +114,7 @@
         </li>
         <li>
           <h3>Sunum ve arayüz gösterimi</h3>
-          <p>4. haftada Streamlit arayüzü geliştirilecek; kapsamı sunum biçimine göre belirlenecek.</p>
+          <p>Streamlit arayüzüne 11 Kasım&#x27;da başlanıyor; kapsamı sunum biçimine göre belirlenecek.</p>
           <p class="soru"><span>Soru</span> Sunumda arayüzün canlı gösterimi bekleniyor mu, yoksa ekran görüntüleri yeterli mi? Sunum süresi ne kadar?</p>
         </li>
         <li>
@@ -129,7 +131,7 @@
         <li>Karar eşikleri, önceden yazılmış bir ölçüte göre eğitim kümesindeki çapraz doğrulama tahminlerinden seçildi.</li>
         <li>Saldırı türü bazında (15 etiket) raporlama tabloları hazırlandı.</li>
         <li>Test öncesinde tüm seçimler (eşikler, metrik kodu, raporlama kuralları) sürüm kontrolünde donduruldu; dört algoritma iki sınıflandırma düzeyinde tüm eğitim kümesiyle son kez eğitildi.</li>
-        <li>Test kümesi tek bir koşuyla ölçüldü. Sonuçlar yorumlanıyor; yorum tamamlanınca özet olarak paylaşılacak.</li>
+        <li>Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor.</li>
       </ul>
     </section>
 
@@ -147,17 +149,47 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4" aria-label="Eğitilen model"><span style="width:100%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">24</div>
+          <div class="deger">25</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
       </div>
     </section>
 
+    <section aria-labelledby="b-test">
+      <h2 id="b-test">Test sonuçları (ikili sınıflandırma, seçilen eşikte)</h2>
+      <table class="test">
+        <thead><tr><th>Model</th><th>Yanlış alarm oranı (FPR)</th><th>Saldırı yakalama oranı (recall)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Model">XGBoost</td>
+            <td data-label="Yanlış alarm oranı (FPR)" class="sayi">%0,0988</td>
+            <td data-label="Saldırı yakalama oranı (recall)" class="sayi">%99,96</td>
+          </tr>
+          <tr>
+            <td data-label="Model">Karar ağacı (Decision Tree)</td>
+            <td data-label="Yanlış alarm oranı (FPR)" class="sayi">%0,0443</td>
+            <td data-label="Saldırı yakalama oranı (recall)" class="sayi">%99,75</td>
+          </tr>
+          <tr>
+            <td data-label="Model">Lojistik regresyon (Logistic Regression)</td>
+            <td data-label="Yanlış alarm oranı (FPR)" class="sayi">%0,1054</td>
+            <td data-label="Saldırı yakalama oranı (recall)" class="sayi">%69,47</td>
+          </tr>
+          <tr>
+            <td data-label="Model">Rastgele Orman (Random Forest)</td>
+            <td data-label="Yanlış alarm oranı (FPR)" class="sayi">%0,1002</td>
+            <td data-label="Saldırı yakalama oranı (recall)" class="sayi">%99,81</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="test-not">Tek test ölçümü (7 Kasım 2026). Karar eşiği yalnızca eğitim verisinde, en fazla %0,1 yanlış alarm hedefine göre seçildi; test kümesi bir kez kullanıldı. Lojistik regresyon ve Rastgele Orman&#x27;da testteki oran hedefin hafif üzerinde; değerler olduğu gibi gösteriliyor.</p>
+    </section>
+
     <section aria-labelledby="b-bulgu">
       <h2 id="b-bulgu">Öne çıkan bulgu</h2>
       <h3>Özellik çıkarım aracındaki hatalar veride iz bırakıyor</h3>
-      <p>CIC-IDS2017&#x27;yi üreten aracın (CICFlowMeter) kaynak kodu incelendi. Bayrak sütunlarının başlıkları ile taşıdıkları değerler birbirini tutmuyor ve bayraklar yalnızca akışın ilk paketinden sayılıyor; veri setindeki sabit ve kopya sütunların da kod düzeyinde nedenleri var. Bu, özelliklerin adına bakarak yorum yapmanın yanıltıcı olabileceğini gösteriyor.</p>
+      <p>CIC-IDS2017&#x27;yi üreten aracın (CICFlowMeter) erişilebilen kaynak kodu incelendi. İncelenen sürümde bayrak sütunlarının başlıkları ile taşıdıkları değerler birbirini tutmuyor ve bayraklar yalnızca akışın ilk paketinden sayılıyor; veri setindeki sabit ve kopya sütunlar da bu davranışlarla açıklanıyor. Benzer hesaplama hataları literatürde de bildirilmiştir (Rosay ve ark., 2022). Veri setini üreten sürüm erişilebilir olmadığı için bulgular dolaylıdır. Bu, özelliklerin adına bakarak yorum yapmanın yanıltıcı olabileceğini gösteriyor.</p>
     </section>
 
     <section aria-labelledby="b-plan">
@@ -175,7 +207,7 @@
         </li>
         <li class="aktif">
           <div class="hafta">Hafta 3<span>8–14 Kasım</span></div>
-          <div class="konu">Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu</div>
+          <div class="konu">Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu. Streamlit arayüzüne 11 Kasım&#x27;da başlanıyor.</div>
           <span class="rozet devam">Devam ediyor</span>
         </li>
         <li>
@@ -316,15 +348,21 @@
             <td data-label="Karar">Test sonuçları yorumlanıp rapora işlenmeden panoda sayısal sonuç yayımlanmaz.</td>
             <td data-label="Gerekçe">Sonuçların bağlamından koparılmadan, yorumuyla birlikte paylaşılması.</td>
           </tr>
+          <tr>
+            <td data-label="Tarih">07.11.2026</td>
+            <td data-label="Karar">Panoda yalnızca ikili sınıflandırmanın test yanlış alarm oranı ve saldırı yakalama oranı yayımlanır.</td>
+            <td data-label="Gerekçe">Odak metrikler bunlar; ayrıntılı sonuçlar raporda yer alır.</td>
+          </tr>
         </tbody>
       </table>
       <h3>Düzeltmeler</h3>
       <ul class="liste">
         <li>Düzeltme (07.11.2026): 26.10.2026 kararındaki &#x27;eksik değer göstergeleri eğitimden öğrenilir&#x27; ifadesi — göstergeler veriden öğrenilmez; sabit bir sütun listesine bağlıdır (1 Kasım&#x27;dan beri).</li>
+        <li>Düzeltme (08.11.2026): 07.11.2026 tarihli &#x27;Test sonuçları yorumlanıp rapora işlenmeden panoda sayısal sonuç yayımlanmaz&#x27; kararına aynı tarihli yeni kararla bir istisna getirildi: ikili sınıflandırmanın test yanlış alarm oranı ve saldırı yakalama oranı yayımlanır. Diğer test sonuçları için eski karar geçerlidir; bu sonuçlar raporda yer alır.</li>
       </ul>
     </section>
 
-    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 7 Kasım 2026.</footer>
+    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 8 Kasım 2026.</footer>
   </main>
 </body>
 </html>

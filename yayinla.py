@@ -15,6 +15,7 @@ import re
 import struct
 import sys
 from datetime import date
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 from ruamel.yaml import YAML
@@ -162,6 +163,28 @@ karar_notlari = veri.get("karar_notlari") or []
 if not isinstance(karar_notlari, list) or any(not isinstance(n, str) or not n.strip() for n in karar_notlari):
     dur("durum.yml: 'karar_notlari' boş olmayan metinlerden oluşan bir liste olmalı")
 
+# test_sonuclari isteğe bağlı: ikili sınıflandırmanın test FPR ve recall değerleri (yüzde olarak yazılır).
+# Alan yoksa sayfaya hiçbir şey eklenmez (sayfa önceki sürümle bayt bayt aynı kalır).
+test = veri.get("test_sonuclari")
+if test is not None:
+    gerekli(test, "baslik", "test_sonuclari.")
+    gerekli(test, "not", "test_sonuclari.")
+    test_satirlari = gerekli(test, "satirlar", "test_sonuclari.", list)
+    for i, t in enumerate(test_satirlari, start=1):
+        gerekli(t, "model", f"test_sonuclari.satirlar[{i}].")
+        for k in ("fpr_yuzde", "recall_yuzde"):
+            deger = gerekli(t, k, f"test_sonuclari.satirlar[{i}].")
+            # bool da int sayılır; açıkça dışla. Yüzde 0-100 aralığında olmalı.
+            if isinstance(deger, bool) or not isinstance(deger, (int, float)) or not 0 <= deger <= 100:
+                dur(f"test_sonuclari.satirlar[{i}].{k}: 0-100 arasında bir sayı olmalı -> {deger!r}")
+
+
+def yuzde_tr(deger, ondalik):
+    """Yüzdeyi Türkçe biçimde yazar: (0.0988, 4) -> '%0,0988'. Decimal: ikili kayan nokta yuvarlama kayması olmasın."""
+    d = Decimal(str(deger)).quantize(Decimal(1).scaleb(-ondalik), rounding=ROUND_HALF_UP)
+    return "%" + str(d).replace(".", ",")
+
+
 # ----------------------------------------------------------------------
 # 2) HTML parçaları
 # ----------------------------------------------------------------------
@@ -224,6 +247,34 @@ figur_html = (f"""      <figure>
 notlar_html = ("      <h3>Düzeltmeler</h3>\n      <ul class=\"liste\">\n"
                + "".join(f"        <li>{e(n)}</li>\n" for n in karar_notlari)
                + "      </ul>\n") if karar_notlari else ""
+
+# Test sonuçları bölümü ve ona özel CSS: yalnızca alan varsa üretilir
+if test is not None:
+    test_satir_html = "\n".join(
+        f"""          <tr>
+            <td data-label="Model">{e(t['model'])}</td>
+            <td data-label="Yanlış alarm oranı (FPR)" class="sayi">{e(yuzde_tr(t['fpr_yuzde'], 4))}</td>
+            <td data-label="Saldırı yakalama oranı (recall)" class="sayi">{e(yuzde_tr(t['recall_yuzde'], 2))}</td>
+          </tr>"""
+        for t in test_satirlari
+    )
+    test_html = f"""    <section aria-labelledby="b-test">
+      <h2 id="b-test">{e(test['baslik'])}</h2>
+      <table class="test">
+        <thead><tr><th>Model</th><th>Yanlış alarm oranı (FPR)</th><th>Saldırı yakalama oranı (recall)</th></tr></thead>
+        <tbody>
+{test_satir_html}
+        </tbody>
+      </table>
+      <p class="test-not">{e(test['not'])}</p>
+    </section>
+
+"""
+    test_css = """    table.test td.sayi { font-variant-numeric: tabular-nums; }
+    .test-not { color: var(--metin2); font-size: .9rem; margin-top: 10px; }
+"""
+else:
+    test_html = test_css = ""
 
 CSS = """
     :root {
@@ -313,7 +364,7 @@ sayfa = f"""<!DOCTYPE html>
   <meta name="robots" content="noindex">
   <meta name="color-scheme" content="light dark">
   <title>{e(proje['ad'])} ilerleme panosu</title>
-  <style>{CSS}  </style>
+  <style>{CSS}{test_css}  </style>
 </head>
 <body>
   <main>
@@ -352,7 +403,7 @@ sayfa = f"""<!DOCTYPE html>
       </div>
     </section>
 
-    <section aria-labelledby="b-bulgu">
+{test_html}    <section aria-labelledby="b-bulgu">
       <h2 id="b-bulgu">Öne çıkan bulgu</h2>
       <h3>{e(bulgu['baslik'])}</h3>
 {figur_html}      <p>{e(bulgu['aciklama'])}</p>
@@ -390,5 +441,6 @@ if re.search(r"<script", sayfa, re.IGNORECASE):
 CIKTI.write_text(sayfa, encoding="utf-8", newline="\n")
 print(f"Üretildi: {CIKTI.name} ({len(sayfa.encode('utf-8')):,} bayt)")
 print(f"  {takvim} (çubuk %{yuzde}) | danışman konusu: {len(gorusler)} | sayı kartı: {len(kartlar)} "
-      f"(karar kaydı: {len(kararlar)}) | karar notu: {len(karar_notlari)} | plan: {len(plan)} hafta | grafik: "
+      f"(karar kaydı: {len(kararlar)}) | karar notu: {len(karar_notlari)} | "
+      f"test satırı: {len(test_satirlari) if test is not None else 'yok'} | plan: {len(plan)} hafta | grafik: "
       + (f"{bulgu['grafik']} ({genislik}x{yukseklik})" if grafik_var else "yok"))
