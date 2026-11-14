@@ -96,11 +96,11 @@
       <p class="baslik">Makine Öğrenmesi Tabanlı Ağ Trafiği Analizi ve Siber Tehdit Tespit Sistemi</p>
       <p class="odak"><strong>Odak:</strong> Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği</p>
       <div class="satir">
-        <span>Son güncelleme: 8 Kasım 2026</span>
-        <span>Takvim: Hafta 3/5</span>
+        <span>Son güncelleme: 14 Kasım 2026</span>
+        <span>Takvim: Hafta 3/5 tamamlandı</span>
       </div>
-      <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" aria-label="Takvim: Hafta 3/5"><span style="width:60%"></span></div>
-      <p class="ozet">Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışmasına 11 Kasım&#x27;da başlanıyor. Literatür taraması sürüyor (22 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
+      <div class="cubuk" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" aria-label="Takvim: Hafta 3/5 tamamlandı"><span style="width:60%"></span></div>
+      <p class="ozet">Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışması 4. haftada (15–21 Kasım) yapılacak. Literatür taraması sürüyor (22 künye doğrulandı, 10 kaynak tam metinden incelendi).</p>
     </header>
 
     <section class="danisman" aria-labelledby="b-danisman">
@@ -114,7 +114,7 @@
         </li>
         <li>
           <h3>Sunum ve arayüz gösterimi</h3>
-          <p>Streamlit arayüzüne 11 Kasım&#x27;da başlanıyor; kapsamı sunum biçimine göre belirlenecek.</p>
+          <p>Streamlit arayüzü 4. haftada (15–21 Kasım) geliştirilecek; kapsamı sunum biçimine göre belirlenecek.</p>
           <p class="soru"><span>Soru</span> Sunumda arayüzün canlı gösterimi bekleniyor mu, yoksa ekran görüntüleri yeterli mi? Sunum süresi ne kadar?</p>
         </li>
         <li>
@@ -132,6 +132,8 @@
         <li>Saldırı türü bazında (15 etiket) raporlama tabloları hazırlandı.</li>
         <li>Test öncesinde tüm seçimler (eşikler, metrik kodu, raporlama kuralları) sürüm kontrolünde donduruldu; dört algoritma iki sınıflandırma düzeyinde tüm eğitim kümesiyle son kez eğitildi.</li>
         <li>Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor.</li>
+        <li>Keşifsel veri analizi grafikleri ana kurguya göre (hedef port hariç) yeniden üretildi.</li>
+        <li>Çapraz veri seti testi, önceden yazılmış koşullardan biri sağlanmadığı için yapılmadı.</li>
       </ul>
     </section>
 
@@ -149,7 +151,7 @@
           <div class="mini" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4" aria-label="Eğitilen model"><span style="width:100%"></span></div>
         </div>
         <div class="kart">
-          <div class="deger">25</div>
+          <div class="deger">26</div>
           <div class="ad">Karar kaydı</div>
           
         </div>
@@ -207,8 +209,8 @@
         </li>
         <li class="aktif">
           <div class="hafta">Hafta 3<span>8–14 Kasım</span></div>
-          <div class="konu">Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu. Streamlit arayüzüne 11 Kasım&#x27;da başlanıyor.</div>
-          <span class="rozet devam">Devam ediyor</span>
+          <div class="konu">Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşul sağlanmadığı için yapılmadı</div>
+          <span class="rozet tamam">Tamamlandı</span>
         </li>
         <li>
           <div class="hafta">Hafta 4<span>15–21 Kasım</span></div>
@@ -353,6 +355,11 @@
             <td data-label="Karar">Panoda yalnızca ikili sınıflandırmanın test yanlış alarm oranı ve saldırı yakalama oranı yayımlanır.</td>
             <td data-label="Gerekçe">Odak metrikler bunlar; ayrıntılı sonuçlar raporda yer alır.</td>
           </tr>
+          <tr>
+            <td data-label="Tarih">14.11.2026</td>
+            <td data-label="Karar">Çapraz veri seti testi (CIC-UNSW-NB15) yapılmıyor.</td>
+            <td data-label="Gerekçe">7 Kasım&#x27;da önceden yazılan koşullardan biri (veri sürümünün yayın künyesinin doğrulanması) sağlanmadı. Sonuçlar yalnızca CIC-IDS2017 için geçerlidir; bu durum raporda sınırlılık olarak yer alır.</td>
+          </tr>
         </tbody>
       </table>
       <h3>Düzeltmeler</h3>
@@ -362,7 +369,7 @@
       </ul>
     </section>
 
-    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 8 Kasım 2026.</footer>
+    <footer>Bu sayfa durum.yml dosyasından otomatik üretilir. Son güncelleme: 14 Kasım 2026.</footer>
   </main>
 </body>
 </html>

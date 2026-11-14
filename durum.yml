@@ -9,10 +9,11 @@ proje:
   odak: Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği
 
 durum:
-  son_guncelleme: 2026-11-08
+  son_guncelleme: 2026-11-14
   hafta: 3
   toplam_hafta: 5
-  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışmasına 11 Kasım'da başlanıyor. Literatür taraması sürüyor (22 künye doğrulandı, 10 kaynak tam metinden incelendi).
+  takvim_notu: tamamlandı
+  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışması 4. haftada (15–21 Kasım) yapılacak. Literatür taraması sürüyor (22 künye doğrulandı, 10 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -25,8 +26,8 @@ plan:
     durum: tamam
   - hafta: 3
     tarih: 8–14 Kasım
-    konu: Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşullu. Streamlit arayüzüne 11 Kasım'da başlanıyor.
-    durum: devam
+    konu: Eşik seçimi, son modeller, testte tek ölçüm, saldırı türü bazında sonuçlar; çapraz veri seti testi koşul sağlanmadığı için yapılmadı
+    durum: tamam
   - hafta: 4
     tarih: 15–21 Kasım
     konu: Streamlit arayüzü
@@ -41,7 +42,7 @@ danisman_gorusu:
     aciklama: Rapor için yazım kılavuzu, sayfa sınırı, teslim ve sunum tarihleri henüz bende yok.
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
   - konu: Sunum ve arayüz gösterimi
-    aciklama: Streamlit arayüzüne 11 Kasım'da başlanıyor; kapsamı sunum biçimine göre belirlenecek.
+    aciklama: Streamlit arayüzü 4. haftada (15–21 Kasım) geliştirilecek; kapsamı sunum biçimine göre belirlenecek.
     soru: Sunumda arayüzün canlı gösterimi bekleniyor mu, yoksa ekran görüntüleri yeterli mi? Sunum süresi ne kadar?
   - konu: Kısayol özelliklerinin raporlanması
     aciklama: >-
@@ -55,6 +56,8 @@ son_guncellemeden_bu_yana:
   - "Saldırı türü bazında (15 etiket) raporlama tabloları hazırlandı."
   - "Test öncesinde tüm seçimler (eşikler, metrik kodu, raporlama kuralları) sürüm kontrolünde donduruldu; dört algoritma iki sınıflandırma düzeyinde tüm eğitim kümesiyle son kez eğitildi."
   - "Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor."
+  - "Keşifsel veri analizi grafikleri ana kurguya göre (hedef port hariç) yeniden üretildi."
+  - "Çapraz veri seti testi, önceden yazılmış koşullardan biri sağlanmadığı için yapılmadı."
 
 sayilar:
   - ad: Okunan kaynak
@@ -172,6 +175,9 @@ karar_kaydi:
   - tarih: 2026-11-07
     karar: Panoda yalnızca ikili sınıflandırmanın test yanlış alarm oranı ve saldırı yakalama oranı yayımlanır.
     gerekce: Odak metrikler bunlar; ayrıntılı sonuçlar raporda yer alır.
+  - tarih: 2026-11-14
+    karar: Çapraz veri seti testi (CIC-UNSW-NB15) yapılmıyor.
+    gerekce: 7 Kasım'da önceden yazılan koşullardan biri (veri sürümünün yayın künyesinin doğrulanması) sağlanmadı. Sonuçlar yalnızca CIC-IDS2017 için geçerlidir; bu durum raporda sınırlılık olarak yer alır.
 
 # Karar tablosunun altındaki "Düzeltmeler" notları (karar sayılmaz; kart sayısına eklenmez). İsteğe bağlı.
 karar_notlari:

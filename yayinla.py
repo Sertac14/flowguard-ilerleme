@@ -190,6 +190,12 @@ def yuzde_tr(deger, ondalik):
 # ----------------------------------------------------------------------
 yuzde = round(hafta / toplam_hafta * 100)  # takvim çubuğu: hafta / toplam_hafta
 takvim = f"Takvim: Hafta {hafta}/{toplam_hafta}"
+# takvim_notu isteğe bağlı: "Takvim: Hafta 3/5" sonuna eklenir (ör. "tamamlandı"); yoksa metin değişmez
+takvim_notu = durum.get("takvim_notu")
+if takvim_notu is not None:
+    if not isinstance(takvim_notu, str) or not takvim_notu.strip():
+        dur("durum.takvim_notu boş olmayan bir metin olmalı")
+    takvim += f" {takvim_notu.strip()}"
 
 danisman_html = "\n".join(
     f"""        <li>
