@@ -9,11 +9,10 @@ proje:
   odak: Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği
 
 durum:
-  son_guncelleme: 2026-11-14
-  hafta: 3
+  son_guncelleme: 2026-11-20
+  hafta: 4
   toplam_hafta: 5
-  takvim_notu: tamamlandı
-  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışması 4. haftada (15–21 Kasım) yapılacak. Literatür taraması sürüyor (22 künye doğrulandı, 10 kaynak tam metinden incelendi).
+  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışması 20–21 Kasım'da yapılıyor. Literatür taraması tamamlandı (23 künye doğrulandı, 17 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -31,7 +30,7 @@ plan:
   - hafta: 4
     tarih: 15–21 Kasım
     konu: Streamlit arayüzü
-    durum: bekliyor
+    durum: devam
   - hafta: 5
     tarih: 22–30 Kasım
     konu: Proje raporunun tamamlanması, sunum
@@ -42,7 +41,7 @@ danisman_gorusu:
     aciklama: Rapor için yazım kılavuzu, sayfa sınırı, teslim ve sunum tarihleri henüz bende yok.
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
   - konu: Sunum ve arayüz gösterimi
-    aciklama: Streamlit arayüzü 4. haftada (15–21 Kasım) geliştirilecek; kapsamı sunum biçimine göre belirlenecek.
+    aciklama: Streamlit arayüzü 20–21 Kasım'da geliştiriliyor; kapsamı sunum biçimine göre belirlenecek.
     soru: Sunumda arayüzün canlı gösterimi bekleniyor mu, yoksa ekran görüntüleri yeterli mi? Sunum süresi ne kadar?
   - konu: Kısayol özelliklerinin raporlanması
     aciklama: >-
@@ -52,16 +51,13 @@ danisman_gorusu:
     soru: Bu raporlama düzeyi yeterli mi?
 
 son_guncellemeden_bu_yana:
-  - "Karar eşikleri, önceden yazılmış bir ölçüte göre eğitim kümesindeki çapraz doğrulama tahminlerinden seçildi."
-  - "Saldırı türü bazında (15 etiket) raporlama tabloları hazırlandı."
-  - "Test öncesinde tüm seçimler (eşikler, metrik kodu, raporlama kuralları) sürüm kontrolünde donduruldu; dört algoritma iki sınıflandırma düzeyinde tüm eğitim kümesiyle son kez eğitildi."
-  - "Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor."
-  - "Keşifsel veri analizi grafikleri ana kurguya göre (hedef port hariç) yeniden üretildi."
-  - "Çapraz veri seti testi, önceden yazılmış koşullardan biri sağlanmadığı için yapılmadı."
+  - "Literatür taraması tamamlandı: 17 kaynak tam metinden incelendi; künyeler yayıncı ya da yazar sürümünden doğrulandı."
+  - "Sonuçların yalnızca CIC-IDS2017 için geçerli olduğu sınırlılığı, veri setleri arası genellemeyi ölçen yayımlanmış bir çalışmayla desteklendi."
+  - "Hedef portun model girdisinden çıkarılması kararı, literatürdeki bulgularla karşılaştırıldı."
 
 sayilar:
   - ad: Okunan kaynak
-    deger: 10
+    deger: 17
     hedef: 20
   - ad: Eğitilen model
     deger: 4
