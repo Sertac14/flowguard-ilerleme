@@ -9,10 +9,11 @@ proje:
   odak: Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği
 
 durum:
-  son_guncelleme: 2026-11-20
+  son_guncelleme: 2026-11-21
   hafta: 4
   toplam_hafta: 5
-  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Arayüz çalışması 20–21 Kasım'da yapılıyor. Literatür taraması tamamlandı (23 künye doğrulandı, 17 kaynak tam metinden incelendi).
+  takvim_notu: tamamlandı
+  ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Streamlit arayüzü tamamlandı; uygulama tamamen yerelde çalışıyor. Literatür taraması tamamlandı (23 künye doğrulandı, 20 kaynak tam metinden incelendi).
 
 plan:
   - hafta: 1
@@ -30,7 +31,7 @@ plan:
   - hafta: 4
     tarih: 15–21 Kasım
     konu: Streamlit arayüzü
-    durum: devam
+    durum: tamam
   - hafta: 5
     tarih: 22–30 Kasım
     konu: Proje raporunun tamamlanması, sunum
@@ -41,7 +42,7 @@ danisman_gorusu:
     aciklama: Rapor için yazım kılavuzu, sayfa sınırı, teslim ve sunum tarihleri henüz bende yok.
     soru: Uymam gereken bir kılavuz, sayfa sınırı ya da yapay zeka kullanım beyanı kuralı var mı?
   - konu: Sunum ve arayüz gösterimi
-    aciklama: Streamlit arayüzü 20–21 Kasım'da geliştiriliyor; kapsamı sunum biçimine göre belirlenecek.
+    aciklama: Streamlit arayüzü tamamlandı ve yerelde çalışıyor.
     soru: Sunumda arayüzün canlı gösterimi bekleniyor mu, yoksa ekran görüntüleri yeterli mi? Sunum süresi ne kadar?
   - konu: Kısayol özelliklerinin raporlanması
     aciklama: >-
@@ -51,13 +52,12 @@ danisman_gorusu:
     soru: Bu raporlama düzeyi yeterli mi?
 
 son_guncellemeden_bu_yana:
-  - "Literatür taraması tamamlandı: 17 kaynak tam metinden incelendi; künyeler yayıncı ya da yazar sürümünden doğrulandı."
-  - "Sonuçların yalnızca CIC-IDS2017 için geçerli olduğu sınırlılığı, veri setleri arası genellemeyi ölçen yayımlanmış bir çalışmayla desteklendi."
-  - "Hedef portun model girdisinden çıkarılması kararı, literatürdeki bulgularla karşılaştırıldı."
+  - "Streamlit arayüzü tamamlandı: yerelde çalışan, beş sekmeli bir uygulama."
+  - "Literatür hedefi tamamlandı: 20 kaynak tam metinden incelendi (hedef aralığı 15–20)."
 
 sayilar:
   - ad: Okunan kaynak
-    deger: 17
+    deger: 20
     hedef: 20
   - ad: Eğitilen model
     deger: 4
@@ -174,6 +174,9 @@ karar_kaydi:
   - tarih: 2026-11-14
     karar: Çapraz veri seti testi (CIC-UNSW-NB15) yapılmıyor.
     gerekce: 7 Kasım'da önceden yazılan koşullardan biri (veri sürümünün yayın künyesinin doğrulanması) sağlanmadı. Sonuçlar yalnızca CIC-IDS2017 için geçerlidir; bu durum raporda sınırlılık olarak yer alır.
+  - tarih: 2026-11-21
+    karar: Arayüz test kümesini kullanmaz ve yeni sonuç üretmez.
+    gerekce: Test kümesinin tek kullanımı korunur. Arayüzdeki tahminlerin test edilen modellerle aynı olduğu, eğitim kümesinden seçilen referans satırlarda bit düzeyinde doğrulandı.
 
 # Karar tablosunun altındaki "Düzeltmeler" notları (karar sayılmaz; kart sayısına eklenmez). İsteğe bağlı.
 karar_notlari:
