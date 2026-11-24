@@ -9,10 +9,9 @@ proje:
   odak: Genel doğruluk yerine yanlış alarm oranı (FPR), saldırı türü bazında tespit oranı ve sınıf dengesizliği
 
 durum:
-  son_guncelleme: 2026-11-21
-  hafta: 4
+  son_guncelleme: 2026-11-24
+  hafta: 5
   toplam_hafta: 5
-  takvim_notu: tamamlandı
   ozet: Karar eşikleri seçildi, test öncesi seçimler donduruldu ve son modeller eğitildi; test kümesi tek bir koşuyla ölçüldü, ikili sınıflandırmanın test sonuçları aşağıda. Sonuçlar saldırı türleri bazında incelendi; rapor yazımı sürüyor. Streamlit arayüzü tamamlandı; uygulama tamamen yerelde çalışıyor. Literatür taraması tamamlandı (23 künye doğrulandı, 20 kaynak tam metinden incelendi).
 
 plan:
@@ -35,7 +34,7 @@ plan:
   - hafta: 5
     tarih: 22–30 Kasım
     konu: Proje raporunun tamamlanması, sunum
-    durum: bekliyor
+    durum: devam
 
 danisman_gorusu:
   - konu: Teslim ve biçim
@@ -52,8 +51,8 @@ danisman_gorusu:
     soru: Bu raporlama düzeyi yeterli mi?
 
 son_guncellemeden_bu_yana:
-  - "Streamlit arayüzü tamamlandı: yerelde çalışan, beş sekmeli bir uygulama."
-  - "Literatür hedefi tamamlandı: 20 kaynak tam metinden incelendi (hedef aralığı 15–20)."
+  - "Arayüze literatür sekmesi eklendi: 23 kaynak, Türkçe özetleri ve proje kararlarının hangi kaynaklara dayandığı."
+  - "5. hafta başladı: proje raporu ve sunum hazırlığı sürüyor."
 
 sayilar:
   - ad: Okunan kaynak
@@ -177,6 +176,9 @@ karar_kaydi:
   - tarih: 2026-11-21
     karar: Arayüz test kümesini kullanmaz ve yeni sonuç üretmez.
     gerekce: Test kümesinin tek kullanımı korunur. Arayüzdeki tahminlerin test edilen modellerle aynı olduğu, eğitim kümesinden seçilen referans satırlarda bit düzeyinde doğrulandı.
+  - tarih: 2026-11-24
+    karar: "Arayüze literatür sekmesi eklendi; sekmedeki tüm metin tek bir içerik dosyasından gelir ve yeni sonuç içermez."
+    gerekce: "Her yöntem kararının hangi kaynağa dayandığı uygulamada da izlenebilir. Özetler ve değerlendirmeler proje ekibinin cümleleridir; makale metni yer almaz. Model, eşik ve test kümesi dondurulmuş kalır."
 
 # Karar tablosunun altındaki "Düzeltmeler" notları (karar sayılmaz; kart sayısına eklenmez). İsteğe bağlı.
 karar_notlari:
